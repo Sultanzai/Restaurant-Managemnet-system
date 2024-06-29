@@ -49,6 +49,16 @@ body {
     border-radius: 5px;
 }
 
+/* Buttons */
+.btn{
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+.search-filed{
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
 .main-content {
     flex-grow: 1;
     padding: 20px;

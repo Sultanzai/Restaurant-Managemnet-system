@@ -19,10 +19,10 @@
                 <h2>Restaurant</h2>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Reservations</a></li>
+                <li><a href="{{ route('welcome') }}">Dashboard</a></li>
+                <li><a href="{{ route('OrderPage') }}">Orders</a></li>
+                <li><a href="{{ route('OrderPage') }}">Menu</a></li>
+                <li><a href="{{ route('StoragePage') }}">Storage</a></li>
                 <li><a href="#">Customers</a></li>
                 <li><a href="#">Reports</a></li>
                 <li><a href="#">Settings</a></li>
