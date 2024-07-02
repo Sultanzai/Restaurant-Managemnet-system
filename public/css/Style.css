@@ -50,9 +50,9 @@ body {
 }
 
 /* Buttons */
-.btn{
-    margin-top: 35px;
-    margin-bottom: 10px;
+button{
+    background-color: #515151;
+    color: red;
 }
 .search-filed{
     margin-top: 40px;

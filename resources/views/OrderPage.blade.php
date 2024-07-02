@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Admin Dashboard</title>
-    <link rel="stylesheet" href="{{asset ('css/Style.css') }}">
-    <link rel="stylesheet" href="{{asset ('BootstrapCSS/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{asset ('BootstrapCSS/bootstrap.min.css') }}">
-    <script src="{{asset ('js/bootstrap.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('css/Style.css') }}">
+    <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/4.3.1-1/bootstrap-rtl.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{asset ('js/main.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <style>
+
+    </style>
 </head>
 <body>
     <div class="containerr">
@@ -41,9 +49,6 @@
             <div class="continer">
                 <h3>Orders</h3>
                 <div class="row">
-                    <div class="col-md-5 search-filed">
-                        <input type="text" name="" id="" value="Search">
-                    </div>
                     <div class="col-md"></div>
                     <div class="col-md-1">
                         <button class="btn">Add Order</button>
@@ -52,98 +57,77 @@
                         <button class="btn">Report</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                            <table class="table table-striped">
+            </div>
+
+                {{-- Data table Datas --}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="example" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Order </th>
-                                        <th scope="col">AMount</th>
-                                        <th scope="col">Total</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Delete</th>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>20</td>
-                                        <td>Pice</td>
-                                        <td>120</td>
-                                        <td>X</td>
-                                        <td>X</td>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+                                        <td>61</td>
+                                        <td>2011-04-25</td>
+                                        <td>$320,800</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>20</td>
-                                        <td>Pice</td>
-                                        <td>120</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>20</td>
-                                        <td>Pice</td>
-                                        <td>120</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>20</td>
-                                        <td>Pice</td>
-                                        <td>120</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>20</td>
-                                        <td>Pice</td>
-                                        <td>120</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>20</td>
-                                        <td>Pice</td>
-                                        <td>120</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>20</td>
-                                        <td>Pice</td>
-                                        <td>120</td>
-                                        <td>X</td>
-                                        <td>X</td>
+                                        <td>Garrett Winters</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>63</td>
+                                        <td>2011-07-25</td>
+                                        <td>$170,750</td>
                                     </tr>
-                                    <tr style="background-color: rgb(215, 215, 215)">
-                                        <th scope="row"></th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total 12540</td>
+                                    <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>Junior Technical Author</td>
+                                        <td>San Francisco</td>
+                                        <td>66</td>
+                                        <td>2009-01-12</td>
+                                        <td>$86,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cedric Kelly</td>
+                                        <td>Senior Javascript Developer</td>
+                                        <td>Edinburgh</td>
+                                        <td>22</td>
+                                        <td>2012-03-29</td>
+                                        <td>$433,060</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Donna Snider</td>
+                                        <td>Customer Support</td>
+                                        <td>New York</td>
+                                        <td>27</td>
+                                        <td>2011-01-25</td>
+                                        <td>$112,000</td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
                     </div>
-                </div>
-
-            </div>
-
         </div>
     </div>
-
-</body>
+    {{-- Scripts for data table --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 </body>
 </html>
