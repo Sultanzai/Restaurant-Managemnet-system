@@ -1,34 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Admin Dashboard</title>
-    <link rel="stylesheet" href="{{asset ('css/Style.css') }}">
-    <link rel="stylesheet" href="{{asset ('BootstrapCSS/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{asset ('BootstrapCSS/bootstrap.min.css') }}">
-    <script src="{{asset ('js/bootstrap.js')}}"></script>
+    <title>داشبورد مدیریت رستوران</title>
+
+    <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/4.3.1-1/bootstrap-rtl.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{asset ('js/main.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ asset('css/Style.css') }}">
 </head>
 <body>
     <div class="containerr">
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <h2>Restaurant</h2>
+                <h2>رستوران</h2>
             </div>
             <ul class="sidebar-menu">
-            <li><a href="{{ route('welcome') }}">Dashboard</a></li>
-            <li><a href="{{ route('OrderPage') }}">Orders</a></li>
-            <li><a href="{{ route('MenuPage') }}">Menu</a></li>
-            <li><a href="{{ route('StoragePage') }}">Storage</a></li>
-                <li><a href="#">Customers</a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="{{ route('welcome') }}">داشبورد</a></li>
+                <li><a href="{{ route('OrderPage') }}">سفارش‌ها</a></li>
+                <li><a href="{{ route('MenuPage') }}">منو</a></li>
+                <li><a href="{{ route('StoragePage') }}">انبار</a></li>
+                <li><a href="#">هزینه‌ها</a></li>
+                <li><a href="#">گزارش‌ها</a></li>
             </ul>
         </nav>
-
         <!-- Main Content -->
         <div class="main-content">
             <header>
@@ -39,98 +44,19 @@
             </header>
 
             <div class="continer">
-                <h3>Storage</h3>
-                <div class="row">
-                    <div class="col-md-5 search-filed">
-                        <input type="text" name="" id="" value="Search">
-                    </div>
-                    <div class="col-md"></div>
-                    <div class="col-md-1">
-                        <button class="btn">Inster Items</button>
-                    </div>
-                    <div class="col-md-1">
-                        <button class="btn">Out Items</button>
-                    </div>
-                    <div class="col-md-1">
-                        <button class="btn">Add New Item</button>
-                    </div>
-                    <div class="col-md-1">
-                        <button class="btn">Report</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Item Name</th>
-                                        <th scope="col">Item Unit</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Juice Mango</td>
-                                        <td>Small</td>
-                                        <td>80</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Juice Mange</td>
-                                        <td>Midem</td>
-                                        <td>100</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Jucie Mange</td>
-                                        <td>Large</td>
-                                        <td>120</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>Pice</td>
-                                        <td>360</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>Pice</td>
-                                        <td>360</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Chicken</td>
-                                        <td>Pice</td>
-                                        <td>360</td>
-                                        <td>X</td>
-                                        <td>X</td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                    </div>
-                </div>
-
+                <h4>Expances</h4>
             </div>
-
         </div>
     </div>
 
-</body>
+    {{-- Scripts for data table --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 </body>
 </html>

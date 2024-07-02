@@ -50,6 +50,19 @@ body {
 }
 
 /* Buttons */
+
+.dark-bg-btn {
+    width: 125px;
+    height: 43px;
+    background-color: #6b6b6b;
+    color: white;
+    border: none;
+    font-size:18px;
+}
+.dark-bg-btn:hover {
+    background-color: #2e2e2e;
+    color: #fff;
+}
 button{
     background-color: #515151;
     color: red;
@@ -83,8 +96,10 @@ header h1 {
 
 .dashboard-cards {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-evenly;
     margin-top: 20px;
+    margin-bottom: 60px;
+    font-size: 18px;
 }
 
 .card {
@@ -101,6 +116,12 @@ header h1 {
 
 .card:last-child {
     margin-right: 0;
+}
+
+
+/* Data table codes */
+table.dataTable thead th,table.dataTable thead td,table.dataTable tfoot th,table.dataTable tfoot td {
+    text-align: right;
 }
 
 /* Responsive Design */

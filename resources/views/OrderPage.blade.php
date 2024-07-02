@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ asset('css/Style.css') }}">
+    <title>داشبورد مدیریت رستوران</title>
+
     <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
@@ -15,109 +15,157 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <style>
 
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/Style.css') }}">
 </head>
 <body>
     <div class="containerr">
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <h2>Restaurant</h2>
+                <h2>رستوران</h2>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('welcome') }}">Dashboard</a></li>
-                <li><a href="{{ route('OrderPage') }}">Orders</a></li>
-                <li><a href="{{ route('MenuPage') }}">Menu</a></li>
-                <li><a href="{{ route('StoragePage') }}">Storage</a></li>
-                <li><a href="#">Customers</a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="{{ route('welcome') }}">داشبورد</a></li>
+                <li><a href="{{ route('OrderPage') }}">سفارش‌ها</a></li>
+                <li><a href="{{ route('MenuPage') }}">منو</a></li>
+                <li><a href="{{ route('StoragePage') }}">انبار</a></li>
+                <li><a href="#">هزینه‌ها</a></li>
+                <li><a href="#">گزارش‌ها</a></li>
             </ul>
         </nav>
 
         <!-- Main Content -->
         <div class="main-content">
             <header>
-                <h1>Admin Dashboard</h1>
+                <h1>داشبورد مدیریت</h1>
                 <div class="user-info">
-                    <p>Welcome, <span id="username">Admin</span></p>
+                    <p>خوش آمدید، <span id="username">مدیر</span></p>
                 </div>
             </header>
 
             <div class="continer">
-                <h3>Orders</h3>
+                <h3>سفارش‌ها</h3>
                 <div class="row">
                     <div class="col-md"></div>
                     <div class="col-md-1">
-                        <button class="btn">Add Order</button>
+                        <button class="btn dark-bg-btn">افزودن سفارش</button>
                     </div>
                     <div class="col-md-1">
-                        <button class="btn">Report</button>
+                        <button class="btn dark-bg-btn">گزارش</button>
                     </div>
                 </div>
             </div>
 
-                {{-- Data table Datas --}}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table id="example" class="table table-striped" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011-04-25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011-07-25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009-01-12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cedric Kelly</td>
-                                        <td>Senior Javascript Developer</td>
-                                        <td>Edinburgh</td>
-                                        <td>22</td>
-                                        <td>2012-03-29</td>
-                                        <td>$433,060</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Donna Snider</td>
-                                        <td>Customer Support</td>
-                                        <td>New York</td>
-                                        <td>27</td>
-                                        <td>2011-01-25</td>
-                                        <td>$112,000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            {{-- Data table Datas --}}
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="example" class="table table-striped rtl-table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>شناسه</th>
+                                <th>واحد سفارش</th>
+                                <th>مبلغ</th>
+                                <th>وضعیت</th>
+                                <th>تاریخ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                            <tr>
+                                <td>13</td>
+                                <td>4</td>
+                                <td>450</td>
+                                <td>پرداخت شده</td>
+                                <td>2011-04-25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     {{-- Scripts for data table --}}
