@@ -48,9 +48,11 @@
                 <h3>سفارش‌ها</h3>
                 <div class="row">
                     <div class="col-md"></div>
+                    
                     <div class="col-md-1">
-                        <button class="btn dark-bg-btn">افزودن سفارش</button>
+                        <a href="{{ route('AddOrder') }}"><button class="btn dark-bg-btn">افزودن سفارش</button></a>
                     </div>
+                    
                     <div class="col-md-1">
                         <button class="btn dark-bg-btn">گزارش</button>
                     </div>

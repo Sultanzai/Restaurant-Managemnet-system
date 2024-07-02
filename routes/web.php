@@ -19,3 +19,12 @@ Route::get('/menu-page', function () {
 Route::get('/storage-page', function () {
     return view('storagepage');
 })->name('StoragePage');
+
+
+Route::get('/forms', function () {
+    return view('forms');
+})->name('forms');
+
+Route::get('/AddOrder', function () {
+    return view('AddOrder');
+})->name('AddOrder');
