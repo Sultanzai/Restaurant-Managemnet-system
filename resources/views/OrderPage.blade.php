@@ -30,7 +30,7 @@
                 <li><a href="{{ route('OrderPage') }}">سفارش‌ها</a></li>
                 <li><a href="{{ route('MenuPage') }}">منو</a></li>
                 <li><a href="{{ route('StoragePage') }}">انبار</a></li>
-                <li><a href="#">هزینه‌ها</a></li>
+                <li><a href="{{ route('ExpensesPage') }}">هزینه‌ها</a></li>
                 <li><a href="#">گزارش‌ها</a></li>
             </ul>
         </nav>

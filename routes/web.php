@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ExpensesController;
+use App\Models\Expenses;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,3 +30,28 @@ Route::get('/forms', function () {
 Route::get('/AddOrder', function () {
     return view('AddOrder');
 })->name('AddOrder');
+
+
+// Expenses Routes
+Route::get('/ExpensesPage', [ExpensesController::class, 'index'])->name('ExpensesPage');
+
+Route::get('/InsertExpenses', function () {
+    return view('InsertExpenses');
+})->name('InsertExpenses');
+// Inserting Data 
+Route::post('/InsertExpenses', function () {
+    Expenses::create([
+        'E_Name' => request('Name'),
+        'E_Type' => request('type'),
+        'E_Description' => request('Description'),
+        'E_Amount' => request('Amount'),
+    ]);
+    return redirect('/ExpensesPage');
+});
+// Deleting
+Route::delete('/ExpensesPage/{exp}', [ExpensesController::class, 'destroy'])->name('ExpensesPage.destroy');
+// Update
+
+Route::get('/ExpensesPage/{exp}', [ExpensesController::class, 'edit'])->name('ExpensesPage.edit');
+Route::put('/ExpensesPage/{exp}', [ExpensesController::class, 'update'])->name('ExpensesPage.update');
+

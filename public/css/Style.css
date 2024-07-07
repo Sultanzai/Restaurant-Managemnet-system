@@ -5,7 +5,10 @@ body {
     font-family: "Inter", Helvetica;
     background-color: #f4f4f9;
 }
-
+i{
+    text-decoration: none;
+    color: #333;
+}
 .containerr {
     display: flex;
     height: 100vh;

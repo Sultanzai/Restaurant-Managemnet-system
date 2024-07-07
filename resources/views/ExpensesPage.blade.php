@@ -17,6 +17,8 @@
     <script src="{{ asset('js/main.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/Style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="containerr">
@@ -37,77 +39,60 @@
         <!-- Main Content -->
         <div class="main-content">
             <header>
-                <h1>داشبورد مدیریت</h1>
+                <h1>Admin Dashboard</h1>
                 <div class="user-info">
-                    <p>خوش آمدید، <span id="username">مدیر</span></p>
+                    <p>Welcome, <span id="username">Admin</span></p>
                 </div>
             </header>
-            <main>
-                <!-- Add your main dashboard content here -->
-                <h4>سفارش‌ها</h4>
-                <div class="dashboard-cards">
-                    <div class="card"><p>سفارش‌های روزانه: 15</p></div>
-                    <div class="card"><p>سفارش‌های هفتگی: 90</p></div>
-                    <div class="card"><p>سفارش‌های ماهانه: 28</p></div>
-                    <div class="card"><p>کل سفارش‌ها: 28</p></div>
-                </div>
-                <h4>هزینه‌ها</h4>
-                <div class="dashboard-cards">
-                    <div class="card"><p>سفارش‌های روزانه: 15</p></div>
-                    <div class="card"><p>سفارش‌های هفتگی: 90</p></div>
-                    <div class="card"><p>سفارش‌های ماهانه: 28</p></div>
-                    <div class="card"><p>کل هزینه‌ها: 28</p></div>
-                </div>
-            </main>
-            <div class="continer">
-                
-                <div class="row">
-                    <div class="col-md-6"><h4>نمایش گراف</h4></div>
 
-                    <div class="col-md-6">
-                        <h4>هشدار انبار</h4>
+            <div class="continer">
+                <div class="row">
+                    <h4>Expances</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <a href="{{url('/InsertExpenses')}}"><button class="btn dark-bg-btn">Insert</button></a>
+                    </div>
+                </div>
+            </div>
+            {{-- Data table contents --}}
+            <div class="row">
+                <div class="col-md-12">
                     <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
-                                <th>نام</th>
-                                <th>واحدها</th>
-                                <th>نوع واحد</th>
-                                <th>X</th>
-
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
+                        <tbody> 
+                            @foreach ($expenses as $exp)                                                    
+                                <tr>
+                                    <td>{{ $exp->id }}</td>
+                                    <td>{{ $exp->E_Name }}</td>
+                                    <td>{{ $exp->E_Type }}</td>
+                                    <td>{{ $exp->E_Description }}</td>
+                                    <td>{{ $exp->E_Amount }}</td>
+                                    <td><a href="{{ route('ExpensesPage.edit', $exp->id) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
+                                    <td>
+                                        <form id="delete-form-{{ $exp->id }}" action="{{ route('ExpensesPage.destroy', $exp->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" style="background:none; border:none; color:red;">
+                                                <i class="fa fa-trash-o" style="font-size:20px; margin-right:35px;"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr> 
+                            @endforeach
                         </tbody>
+                        
                         {{-- <tfoot>
                             <tr>
                                 <th>Name</th>
@@ -118,15 +103,10 @@
                         </tfoot> --}}
                     </table>
                 </div>
-                </div>
-                <div class="row">
-                    <h4>نمایش گراف فروش ماهانه</h4>
-                </div>
-            </div>
-                
             </div>
         </div>
     </div>
+
     {{-- Scripts for data table --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
