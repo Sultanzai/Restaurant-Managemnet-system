@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExpensesController;
+use App\Http\Controllers\StorageController;
 use App\Models\Expenses;
 use Illuminate\Support\Facades\Route;
 
@@ -17,12 +18,6 @@ Route::get('/order-page', function () {
 Route::get('/menu-page', function () {
     return view('menupage');
 })->name('MenuPage');
-
-Route::get('/storage-page', function () {
-    return view('storagepage');
-})->name('StoragePage');
-
-
 Route::get('/forms', function () {
     return view('forms');
 })->name('forms');
@@ -38,6 +33,7 @@ Route::get('/ExpensesPage', [ExpensesController::class, 'index'])->name('Expense
 Route::get('/InsertExpenses', function () {
     return view('InsertExpenses');
 })->name('InsertExpenses');
+
 // Inserting Data 
 Route::post('/InsertExpenses', function () {
     Expenses::create([
@@ -51,7 +47,21 @@ Route::post('/InsertExpenses', function () {
 // Deleting
 Route::delete('/ExpensesPage/{exp}', [ExpensesController::class, 'destroy'])->name('ExpensesPage.destroy');
 // Update
-
 Route::get('/ExpensesPage/{exp}', [ExpensesController::class, 'edit'])->name('ExpensesPage.edit');
 Route::put('/ExpensesPage/{exp}', [ExpensesController::class, 'update'])->name('ExpensesPage.update');
+
+
+// Storage Routes +
+
+Route::get('/StoragePage', [StorageController:: class, 'index'])->name('StoragePage');
+// Delete
+Route::delete('/StoragePage/{exp}', [StorageController::class, 'destroy'])->name('StoragePage.destroy');
+
+// Update
+Route::get('/StoragePage/{exp}', [StorageController::class, 'edit'])->name('StoragePage.edit');
+Route::put('/StoragePage/{exp}', [StorageController::class, 'update'])->name('StoragePage.update');
+// Route::get('/storage-page', function () {
+//     return view('storagepage');
+// })->name('StoragePage');
+
 

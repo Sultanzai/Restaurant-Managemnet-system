@@ -57,17 +57,18 @@ i{
 .dark-bg-btn {
     width: 125px;
     height: 43px;
-    background-color: #6b6b6b;
+    background-color: #424242;
     color: white;
     border: none;
     font-size:18px;
+    margin: 10px;
 }
 .dark-bg-btn:hover {
-    background-color: #2e2e2e;
+    background-color: #1e1e1e;
     color: #fff;
 }
 button{
-    background-color: #515151;
+    background-color: #222222;
     color: red;
 }
 .search-filed{

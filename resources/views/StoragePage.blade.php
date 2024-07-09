@@ -17,6 +17,8 @@
     <script src="{{ asset('js/main.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/Style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="containerr">
@@ -47,138 +49,55 @@
             <div class="continer">
                 <h3>انبار</h3>
                 <div class="row">
-                    <div class="col-md"></div>
-                    <div class="col-md-1">
+                    <div class="col-md-6">
                         <button class="btn dark-bg-btn">ورود کالا</button>
-                    </div>
-                    <div class="col-md-1">
+                    
                         <button class="btn dark-bg-btn">خروج کالا</button>
-                    </div>
-                    <div class="col-md-1">
+                    
                         <button class="btn dark-bg-btn">افزودن کالا</button>
-                    </div>
-                    <div class="col-md-1">
+                   
                         <button class="btn dark-bg-btn">گزارش</button>
                     </div>
+                    <div class="col-md"></div>
                 </div>
+                <br>
                 <div class="row">
                     <div class="col-md-12">
                         <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>نام کالا</th>
-                                    <th>واحد کالا</th>
-                                    <th>نوع کالا</th>
-                                    <th>مقدار</th>
+                                    <th>نام </th>
+                                    <th>قیمت</th>
+                                    <th>واحد </th>
+                                    <th>نوع </th>
+                                    <th>Status</th>
+                                    <th>Total</th>
                                     <th>ویرایش</th>
                                     <th>حذف</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($storage as $store)
                                 <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
-                                <tr>
-                                    <td>شیر</td>
-                                    <td>10</td>
-                                    <td>لیتر</td>
-                                    <td>120</td>
-                                    <td>X</td>
-                                    <td>X</td>
-                                </tr>
+                                    <td>{{ $store->storage_name }}</td>
+                                    <td>{{ $store->price }}</td>
+                                    <td>{{ $store->type }}</td>
+                                    <td>{{ $store->unit }}</td>
+                                    <td>{{ $store->status }}</td>
+                                    <td>{{ $store->unit * $store->price}}</td>
+                                    <td><a href="{{ route('StoragePage.edit', $store->detail_id) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
+                                    <td>
+                                        <form id="delete-form-{{ $store->detail_id }}" action="{{ route('StoragePage.destroy', $store->detail_id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" style="background:none; border:none; color:red;">
+                                                <i class="fa fa-trash-o" style="font-size:20px; margin-right:35px;"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr> 
+                                @endforeach
+                               
                             </tbody>
                             {{-- <tfoot>
                                 <tr>
