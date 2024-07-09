@@ -50,12 +50,11 @@
                 <h3>انبار</h3>
                 <div class="row">
                     <div class="col-md-6">                    
-                        <button class="btn dark-bg-btn">Add Items</button>
-                    
-                        <button class="btn dark-bg-btn">Out Items</button>
-                   
+                        
                         <a href="{{url('/InsertItems')}}"><button class="btn dark-bg-btn">Create Item</button></a>
-
+                        
+                        <a href="{{url('/AddItems')}}"><button class="btn dark-bg-btn" >In & Out</button></a>
+                        
                         <button class="btn dark-bg-btn">Report</button>
                     </div>
                     <div class="col-md"></div>
@@ -72,7 +71,7 @@
                                     <th>نوع </th>
                                     <th>Status</th>
                                     <th>Total</th>
-                                    <th>ویرایش</th>
+                                    <th>Date</th>
                                     <th>حذف</th>
                                 </tr>
                             </thead>
@@ -85,7 +84,7 @@
                                     <td>{{ $store->unit }}</td>
                                     <td>{{ $store->status }}</td>
                                     <td>{{ $store->unit * $store->price}}</td>
-                                    <td><a href="{{ route('StoragePage.edit', $store->detail_id) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
+                                    <td>{{ $store->date}}</td>
                                     <td>
                                         <form id="delete-form-{{ $store->detail_id }}" action="{{ route('StoragePage.destroy', $store->detail_id) }}" method="POST" style="display:inline;">
                                             @csrf

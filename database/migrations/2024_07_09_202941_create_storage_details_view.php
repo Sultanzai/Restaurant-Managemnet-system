@@ -20,6 +20,7 @@ return new class extends Migration
                 sd.S_Type AS type,
                 sd.S_Price AS price,
                 sd.S_Status AS status,
+                sd.created_at AS date,
                 sd.Storage_ID AS storage_id
             FROM
                 tbl_storage s

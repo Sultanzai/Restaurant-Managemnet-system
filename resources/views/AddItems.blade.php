@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storage Form</title>
+    <title>Add Item Form</title>
     <style>
         body {
             display: flex;
@@ -79,13 +79,16 @@
     
     <div class="form-container">
         <div class="form-header">
-            <h2>Insert Storage Item</h2>
+            <h2>Add Item</h2>
         </div>
-        <form action="/InsertItems" method="POST">
+        <form action="/AddItems" method="POST">
             @csrf
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+                <select name="storage_id" id="storage_id" required>
+                    @foreach($storage as $store)
+                        <option value="{{ $store->id }}">{{ $store->s_Name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="name">Units</label>
