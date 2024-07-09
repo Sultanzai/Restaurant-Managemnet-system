@@ -9,7 +9,7 @@ class StorageDetail extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbl_storage_detail';
+    protected $table = 'tbl_storage__detail';
 
     protected $fillable = [
         'S_Unit',

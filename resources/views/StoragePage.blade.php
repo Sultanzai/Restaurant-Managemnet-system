@@ -49,14 +49,14 @@
             <div class="continer">
                 <h3>انبار</h3>
                 <div class="row">
-                    <div class="col-md-6">
-                        <button class="btn dark-bg-btn">ورود کالا</button>
+                    <div class="col-md-6">                    
+                        <button class="btn dark-bg-btn">Add Items</button>
                     
-                        <button class="btn dark-bg-btn">خروج کالا</button>
-                    
-                        <button class="btn dark-bg-btn">افزودن کالا</button>
+                        <button class="btn dark-bg-btn">Out Items</button>
                    
-                        <button class="btn dark-bg-btn">گزارش</button>
+                        <a href="{{url('/InsertItems')}}"><button class="btn dark-bg-btn">Create Item</button></a>
+
+                        <button class="btn dark-bg-btn">Report</button>
                     </div>
                     <div class="col-md"></div>
                 </div>

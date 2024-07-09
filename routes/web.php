@@ -54,14 +54,18 @@ Route::put('/ExpensesPage/{exp}', [ExpensesController::class, 'update'])->name('
 // Storage Routes +
 
 Route::get('/StoragePage', [StorageController:: class, 'index'])->name('StoragePage');
+// Inserting items in storage 
+Route::get('/InsertItems', function () {
+    return view('InsertItems');
+})->name('InsertItems');
+
+Route::post('InsertItems', [StorageController::class, 'store'])->name('InsertItems');
+
 // Delete
 Route::delete('/StoragePage/{exp}', [StorageController::class, 'destroy'])->name('StoragePage.destroy');
-
 // Update
 Route::get('/StoragePage/{exp}', [StorageController::class, 'edit'])->name('StoragePage.edit');
 Route::put('/StoragePage/{exp}', [StorageController::class, 'update'])->name('StoragePage.update');
-// Route::get('/storage-page', function () {
-//     return view('storagepage');
-// })->name('StoragePage');
+
 
 
