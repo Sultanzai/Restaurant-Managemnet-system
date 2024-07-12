@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\StorageController;
+use App\Http\Controllers\MenuController;
 use App\Models\Expenses;
+use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,10 +16,6 @@ Route::get('/welcome', function () {
 Route::get('/order-page', function () {
     return view('orderpage');
 })->name('OrderPage');
-
-Route::get('/menu-page', function () {
-    return view('menupage');
-})->name('MenuPage');
 Route::get('/forms', function () {
     return view('forms');
 })->name('forms');
@@ -27,7 +25,7 @@ Route::get('/AddOrder', function () {
 })->name('AddOrder');
 
 
-// Expenses Routes
+// Expenses Routes        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/ExpensesPage', [ExpensesController::class, 'index'])->name('ExpensesPage');
 
 Route::get('/InsertExpenses', function () {
@@ -51,7 +49,32 @@ Route::get('/ExpensesPage/{exp}', [ExpensesController::class, 'edit'])->name('Ex
 Route::put('/ExpensesPage/{exp}', [ExpensesController::class, 'update'])->name('ExpensesPage.update');
 
 
-// Storage Routes +
+
+
+
+// Menu Routes          /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('/MenuPage', [MenuController::class, 'index'])->name('MenuPage');
+Route::delete('/MenuPage/{me}', [MenuController::class, 'destroy'])->name('MenuPage.destroy');
+
+Route::get('/InsertMenu', function () {
+    return view('InsertMenu');
+})->name('InsertMenu');
+
+
+// Inserting Data 
+Route::post('/InsertMenu', function () {
+    Menu::create([
+        'm_Name' => request('name'),
+        'm_Price' => request('price'),
+        'm_category' => request('category'),
+    ]);
+    return redirect('/MenuPage');
+});
+
+
+
+
+// Storage Routes       /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/StoragePage', [StorageController:: class, 'index'])->name('StoragePage');
 // Inserting items in storage 
