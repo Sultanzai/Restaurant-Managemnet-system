@@ -17,6 +17,8 @@
     <script src="{{ asset('js/main.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/Style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="containerr">
@@ -79,8 +81,16 @@
                                     <td>{{$item["OD_Units"]}}</td>
                                     <td>{{$item["OD_Prices"]}}</td>
                                     <td>{{$item["O_Status"]}}</td>
-                                    <td>x</td>
-                                    <td>x</td>
+                                    <td><a href="{{ route('EditOrder', $item["Order_ID"]) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
+                                    <td>
+                                        <form id="delete-form-{{ $item["Order_ID"] }}" action="{{ route('OrderPage.destroy', $item["Order_ID"]) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" style="background:none; border:none; color:red;">
+                                                <i class="fa fa-trash-o" style="font-size:20px; margin-right:35px;"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

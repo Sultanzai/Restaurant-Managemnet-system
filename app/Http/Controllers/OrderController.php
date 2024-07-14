@@ -75,4 +75,56 @@ class OrderController extends Controller
 
         return redirect()->route('OrderPage', $order);
     }
+
+    // Edit Order 
+    public function edit($id)
+    {
+        $order = Order::with('orderDetails.menu')->findOrFail($id);
+        $categories = Menu::select('m_category')->distinct()->get();
+        $menus = Menu::all();
+        return view('EditOrder', compact('order', 'categories', 'menus'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'O_Name' => 'required|string',
+            'O_Status' => 'required|string',
+            'O_Description' => 'nullable|string',
+            'items' => 'required|array',
+            'items.*.Menu_ID' => 'required|exists:tbl__menus,id',
+            'items.*.OD_Units' => 'required|integer|min:1',
+            'items.*.OD_Price' => 'required|numeric|min:0',
+        ]);
+
+        $order = Order::findOrFail($id);
+        $order->update([
+            'O_Name' => $request->O_Name,
+            'O_Status' => $request->O_Status,
+            'O_Description' => $request->O_Description,
+        ]);
+
+        // Delete existing order details
+        OrderDetail::where('Order_ID', $id)->delete();
+
+        // Add updated order details
+        foreach ($request->items as $item) {
+            OrderDetail::create([
+                'Order_ID' => $order->id,
+                'Menu_ID' => $item['Menu_ID'],
+                'OD_Units' => $item['OD_Units'],
+                'OD_Price' => $item['OD_Price'],
+            ]);
+        }
+
+        return redirect()->route('OrderPage', $order);
+    }
+
+    // Delete Order 
+    public function destroy($id)
+    {
+        $expense = Order::findOrFail($id);
+        $expense->delete();
+        return redirect()->route('OrderPage')->with('success', 'Expense deleted successfully');
+    }
 }

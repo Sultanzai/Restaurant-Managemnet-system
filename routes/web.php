@@ -98,3 +98,10 @@ Route::get('/OrderPage', [OrderController::class, 'index'])->name('OrderPage');
 
 Route::get('/AddOrder', [OrderController::class, 'create'])->name('AddOrder');
 Route::post('/AddOrder', [OrderController::class, 'store'])->name('AddOrder');
+
+// Editing Order
+Route::get('/EditOrder/{id}', [OrderController::class, 'edit'])->name('EditOrder');
+Route::post('/OrderPage/{id}', [OrderController::class, 'update'])->name('orders.update');
+
+// Deleting
+Route::delete('/OrderPage/{ord}', [OrderController::class, 'destroy'])->name('OrderPage.destroy');
