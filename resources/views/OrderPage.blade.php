@@ -45,17 +45,12 @@
             </header>
 
             <div class="continer">
-                <h3>سفارش‌ها</h3>
+                <h3>Order Page</h3>
                 <div class="row">
+                    <div class="col-md-6">                    
+                        <a href="{{url('/AddOrder')}}"><button class="btn dark-bg-btn">Add Menu</button></a>
+                    </div>
                     <div class="col-md"></div>
-                    
-                    <div class="col-md-1">
-                        <a href="{{ route('AddOrder') }}"><button class="btn dark-bg-btn">افزودن سفارش</button></a>
-                    </div>
-                    
-                    <div class="col-md-1">
-                        <button class="btn dark-bg-btn">گزارش</button>
-                    </div>
                 </div>
             </div>
 
@@ -65,105 +60,29 @@
                     <table id="example" class="table table-striped rtl-table" style="width:100%">
                         <thead>
                             <tr>
-                                <th>شناسه</th>
-                                <th>واحد سفارش</th>
-                                <th>مبلغ</th>
-                                <th>وضعیت</th>
-                                <th>تاریخ</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Menu</th>
+                                <th>Unit</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
-                            <tr>
-                                <td>13</td>
-                                <td>4</td>
-                                <td>450</td>
-                                <td>پرداخت شده</td>
-                                <td>2011-04-25</td>
-                            </tr>
+                            @foreach ($orderData as $item)
+                                <tr>
+                                    <td>{{$item["Order_ID"]}}</td>
+                                    <td>{{$item["O_Name"]}}</td>
+                                    <td>{{$item["Menu_Names"]}}</td>
+                                    <td>{{$item["OD_Units"]}}</td>
+                                    <td>{{$item["OD_Prices"]}}</td>
+                                    <td>{{$item["O_Status"]}}</td>
+                                    <td>x</td>
+                                    <td>x</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
 use App\Models\Expenses;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
@@ -13,16 +14,14 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
-Route::get('/order-page', function () {
-    return view('orderpage');
-})->name('OrderPage');
+
 Route::get('/forms', function () {
     return view('forms');
 })->name('forms');
 
-Route::get('/AddOrder', function () {
-    return view('AddOrder');
-})->name('AddOrder');
+// Route::get('/AddOrder', function () {
+//     return view('AddOrder');
+// })->name('AddOrder');
 
 
 // Expenses Routes        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,4 +92,9 @@ Route::post('AddItems', [StorageController::class, 'AddItems'])->name('AddItems'
 Route::delete('/StoragePage/{exp}', [StorageController::class, 'destroy'])->name('StoragePage.destroy');
 
 
+// Order Routes       /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+Route::get('/OrderPage', [OrderController::class, 'index'])->name('OrderPage');
+
+Route::get('/AddOrder', [OrderController::class, 'create'])->name('AddOrder');
+Route::post('/AddOrder', [OrderController::class, 'store'])->name('AddOrder');

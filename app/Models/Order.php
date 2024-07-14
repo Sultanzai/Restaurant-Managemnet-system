@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+class Order extends Model
 {
-    protected $table = 'tbl__menus';
+    protected $table = 'tbl_order';
     protected $id = 'id';
     protected $fillable = [
-        'm_Name', 'm_Price', 'm_category'
+        'O_Name', 'O_Status', 'O_Description'
     ];
     use HasFactory;
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class, 'Menu_ID');
+        return $this->hasMany(OrderDetail::class, 'Order_ID');
     }
 }

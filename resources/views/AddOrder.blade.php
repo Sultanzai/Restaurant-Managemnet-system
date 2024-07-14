@@ -1,181 +1,181 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سیستم سفارش رستوران</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Add Order</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: "Inter", Helvetica;
-            font-size: 24px;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-            direction: rtl;
-            text-align: right;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+            color: #333;
         }
         h1 {
-            text-align: center;
             color: #333;
         }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-bottom: 5px;
-            color: #555;
-        }
-        input, select, button {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ddd;
+        .category-nav {
+            margin-bottom: 20px;
+            background-color: #333;
             border-radius: 5px;
         }
-        button {
-            background-color: #545454;
+        .category-nav .nav-link {
             color: #fff;
-            cursor: pointer;
-            font-size: 22px;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
         }
-        button:hover {
-            background-color: #545454;
-        }
-        .food-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .food-item select {
-            width: 200px;
-            font-size: 16px;
-        }
-        .total-price {
-            text-align: right;
-            font-size: 18px;
+        .category-nav .nav-link:hover,
+        .category-nav .nav-link.active {
+            background-color: #fff;
             color: #333;
+        }
+        .menu-items {
+            display: none;
+        }
+        .menu-items.active {
+            display: block;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .menu-item {
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .cart-items {
+            margin-top: 20px;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #333;
+            border-color: #333;
+        }
+        .btn-primary:hover {
+            background-color: #555;
+            border-color: #555;
         }
     </style>
 </head>
 <body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Add Order</h1>
+        <form action="{{ route('AddOrder') }}" method="POST">
+            @csrf
+            <ul class="nav category-nav">
+                @foreach($categories as $category)
+                    <li class="nav-item">
+                        <a class="nav-link" href="#{{ $category->m_category }}" onclick="showCategory('{{ $category->m_category }}')">{{ ucfirst($category->m_category) }}</a>
+                    </li>
+                @endforeach
+            </ul>
 
-<div class="container">
-    <h1>اضافه کردن سفارش مشتری</h1>
-    <form id="orderForm">
-        <label for="customerName">نام مشتری</label>
-        <input type="text" id="customerName" name="customerName" required>
+            @foreach($categories as $category)
+                <div id="{{ $category->m_category }}" class="menu-items">
+                    <h3>{{ ucfirst($category->m_category) }}</h3>
+                    <div class="menu-grid">
+                        @foreach($menus->where('m_category', $category->m_category) as $menu)
+                            <div class="menu-item" ondblclick="addToCart({{ $menu->id }}, '{{ $menu->m_Name }}', {{ $menu->m_Price }})">
+                                {{ $menu->m_Name }} - ${{ number_format($menu->m_Price, 2) }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
 
-        <label for="orderStatus">وضعیت سفارش</label>
-        <select id="orderStatus" name="orderStatus">
-            <option value="pending">در انتظار</option>
-            <option value="confirmed">تایید شده</option>
-            <option value="completed">تکمیل شده</option>
-        </select>
-
-        <h2>انتخاب غذاها</h2>
-        <div id="foodList">
-            <div class="food-item">
-                <label>نام غذا</label>
-                <select name="foodName" class="foodName" onchange="updateUnits(this); updateTotalPrice();">
-                    <option value="Pizza" data-price="10" data-units='["Whole"]'>پیتزا   </option>
-                    <option value="Burger" data-price="5" data-units='["Small 60","Medium 80","Large 120"]'>برگر  </option>
-                    <option value="Juice" data-price="3" data-units='["Small 80","Medium 120","Large 200"]'>آبمیوه  </option>
-                    <option value="Chicken Wings" data-price="7" data-units='["1 Package 200 ","2 Packages 360","3 Packages 500"]'>بال مرغ  </option>
-                </select>
-
-                <label>واحد</label>
-                <select name="foodUnit" class="foodUnit" onchange="updateTotalPrice()">
-                    <!-- Options will be dynamically generated -->
-                </select>
-
-                <button type="button" onclick="removeFoodItem(this)">حذف</button>
+            <div class="cart-items mt-4">
+                <h3>Cart</h3>
+                <div id="cart" class="list-group"></div>
             </div>
-        </div>
-        <button type="button" onclick="addFoodItem()">اضافه کردن غذای بیشتر</button>
 
-        <div class="total-price">
-            قیمت کل: <span id="totalPrice">0</span>
-        </div>
+            <div class="form-group mt-4">
+                <label for="O_Name">Order Name</label>
+                <input type="text" name="O_Name" id="O_Name" class="form-control" placeholder="Order Name" required>
+            </div>
 
-        <button type="submit">ثبت سفارش</button>
-    </form>
-</div>
+            <div class="form-group">
+                <label for="O_Status">Order Status</label>
+                <select name="O_Status" id="O_Status" class="form-control" required>
+                    <option value="Paid">Paid</option>
+                    <option value="Unpaid">Unpaid</option>
+                </select>
+            </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeUnits();
-    });
+            <div class="form-group">
+                <label for="O_Description">Order Description</label>
+                <textarea name="O_Description" id="O_Description" class="form-control" placeholder="Order Description"></textarea>
+            </div>
 
-    function initializeUnits() {
-        const foodItems = document.querySelectorAll('.food-item');
-        foodItems.forEach(item => {
-            updateUnits(item.querySelector('.foodName'));
-        });
-        updateTotalPrice();
-    }
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    </div>
 
-    function addFoodItem() {
-        const foodList = document.getElementById('foodList');
-        const foodItem = document.createElement('div');
-        foodItem.className = 'food-item';
-        foodItem.innerHTML = `
-            <label>نام غذا</label>
-            <select name="foodName" class="foodName" onchange="updateUnits(this); updateTotalPrice();">
-                    <option value="Pizza" data-price="10" data-units='["Whole"]'>پیتزا   </option>
-                    <option value="Burger" data-price="5" data-units='["Small 60","Medium 80","Large 120"]'>برگر  </option>
-                    <option value="Juice" data-price="3" data-units='["Small 80","Medium 120","Large 200"]'>آبمیوه  </option>
-                    <option value="Chicken Wings" data-price="7" data-units='["1 Package 200 ","2 Packages 360","3 Packages 500"]'>بال مرغ  </option>
-            </select>
+    <script>
+        function showCategory(category) {
+            document.querySelectorAll('.menu-items').forEach(function (el) {
+                el.classList.remove('active');
+            });
+            document.getElementById(category).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(function (el) {
+                el.classList.remove('active');
+            });
+            document.querySelector(`.nav-link[href='#${category}']`).classList.add('active');
+        }
 
-            <label>واحد</label>
-            <select name="foodUnit" class="foodUnit" onchange="updateTotalPrice()">
-                <!-- Options will be dynamically generated -->
-            </select>
+        function addToCart(id, name, price) {
+            const cart = document.getElementById('cart');
+            let itemDiv = document.getElementById('cart-item-' + id);
 
-            <button type="button" onclick="removeFoodItem(this)">حذف</button>
-        `;
-        foodList.appendChild(foodItem);
-        updateUnits(foodItem.querySelector('.foodName'));
-        updateTotalPrice();
-    }
+            if (itemDiv) {
+                let quantityInput = itemDiv.querySelector('.quantity');
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+                updateTotalPrice(itemDiv, price);
+            } else {
+                itemDiv = document.createElement('div');
+                itemDiv.className = 'list-group-item cart-item';
+                itemDiv.id = 'cart-item-' + id;
+                itemDiv.innerHTML = `
+                    <span>${name} - $<span class="item-price">${price.toFixed(2)}</span></span>
+                    <input type="hidden" name="items[${id}][Menu_ID]" value="${id}">
+                    <input type="hidden" name="items[${id}][OD_Price]" class="item-total-price" value="${price}">
+                    <input type="number" name="items[${id}][OD_Units]" class="form-control quantity" value="1" min="1" style="width: 60px; display: inline-block; margin-right: 10px;" onchange="updateTotalPrice(this.closest('.cart-item'), ${price})">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removeFromCart(${id})">Remove</button>
+                `;
+                cart.appendChild(itemDiv);
+            }
+        }
 
-    function removeFoodItem(button) {
-        button.parentElement.remove();
-        updateTotalPrice();
-    }
+        function updateTotalPrice(itemDiv, price) {
+            let quantity = itemDiv.querySelector('.quantity').value;
+            let totalPrice = (quantity * price).toFixed(2);
+            itemDiv.querySelector('.item-total-price').value = totalPrice;
+            itemDiv.querySelector('.item-price').innerText = totalPrice;
+        }
 
-    function updateUnits(foodSelect) {
-        const selectedOption = foodSelect.options[foodSelect.selectedIndex];
-        const units = JSON.parse(selectedOption.dataset.units);
-        const unitSelect = foodSelect.closest('.food-item').querySelector('.foodUnit');
-        unitSelect.innerHTML = units.map(unit => `<option value="${unit}">${unit}</option>`).join('');
-    }
-
-    function updateTotalPrice() {
-        let totalPrice = 0;
-        const foodItems = document.querySelectorAll('.food-item');
-        foodItems.forEach(item => {
-            const foodName = item.querySelector('.foodName');
-            const price = parseFloat(foodName.options[foodName.selectedIndex].dataset.price);
-            totalPrice += price;
-        });
-        document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
-    }
-
-    document.getElementById('orderForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        alert('سفارش با موفقیت ثبت شد!');
-    });
-</script>
-
+        function removeFromCart(id) {
+            const itemDiv = document.getElementById('cart-item-' + id);
+            if (itemDiv) {
+                itemDiv.remove();
+            }
+        }
+    </script>
 </body>
 </html>

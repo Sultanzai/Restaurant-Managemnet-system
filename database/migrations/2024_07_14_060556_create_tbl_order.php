@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl__menus', function (Blueprint $table) {
+        Schema::create('tbl_order', function (Blueprint $table) {
             $table->id();
-            $table->string('m_Name');
-            $table->decimal('m_Price', 8, 2);
-            $table->string('m_category');
+            $table->string('O_Name');
+            $table->string('O_Status');
+            $table->text('O_Description')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl__menus');
+        Schema::dropIfExists('tbl_order');
     }
 };
