@@ -9,11 +9,11 @@ use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Dashboard');
 });
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/Dashboard', function () {
+    return view('Dashboard');
+})->name('Dashboard');
 
 Route::get('/forms', function () {
     return view('forms');

@@ -78,8 +78,12 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Add Order</h1>
+        <a href="{{ route('OrderPage') }}" style="margin-left:1000px;"><button class="btn btn-primary">Back</button></a>
+        
+
         <form action="{{ route('AddOrder') }}" method="POST">
             @csrf
+            <br>
             <ul class="nav category-nav">
                 @foreach($categories as $category)
                     <li class="nav-item">

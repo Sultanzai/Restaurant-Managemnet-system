@@ -23,28 +23,30 @@
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <h2>رستوران</h2>
+                <div class="logo">
+                    <img src="{{ asset('css/logo.png') }}" alt="">
+                </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('welcome') }}">داشبورد</a></li>
-                <li><a href="{{ route('OrderPage') }}">سفارش‌ها</a></li>
-                <li><a href="{{ route('MenuPage') }}">منو</a></li>
-                <li><a href="{{ route('StoragePage') }}">انبار</a></li>
-                <li><a href="{{ route('ExpensesPage') }}">هزینه‌ها</a></li>
-                <li><a href="#">گزارش‌ها</a></li>
+                <li><a href="{{ route('Dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('OrderPage') }}">Orders</a></li>
+                <li><a href="{{ route('MenuPage') }}">Menus</a></li>
+                <li><a href="{{ route('StoragePage') }}">Storage</a></li>
+                <li><a href="{{ route('ExpensesPage') }}">Expenses</a></li>
+                <li><a href="#">Reports</a></li>
             </ul>
         </nav>
         <!-- Main Content -->
         <div class="main-content">
             <header>
-                <h1>داشبورد مدیریت</h1>
+                <h1>Dashboard</h1>
                 <div class="user-info">
-                    <p>خوش آمدید، <span id="username">مدیر</span></p>
+                    <p>Welcome <span id="username">Admin</span></p>
                 </div>
             </header>
             <main>
                 <!-- Add your main dashboard content here -->
-                <h4>سفارش‌ها</h4>
+                <h4>Orders</h4>
                 <div class="dashboard-cards">
                     <div class="card"><p>سفارش‌های روزانه: 15</p></div>
                     <div class="card"><p>سفارش‌های هفتگی: 90</p></div>

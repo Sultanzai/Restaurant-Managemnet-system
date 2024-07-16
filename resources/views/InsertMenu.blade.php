@@ -96,7 +96,7 @@
                 <select name="category" id="category">
                     <option value="Ice Cream">Ice Cream</option>
                     <option value="Burger">Burger</option>
-                    <option value="Jucie">Jucie</option>
+                    <option value="Jucie">juice</option>
                     <option value="Kabab">Kabab</option>
                     <option value="Break fast">Break fast</option>
                 </select>

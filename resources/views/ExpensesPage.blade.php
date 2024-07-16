@@ -25,21 +25,23 @@
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <h2>رستوران</h2>
+                <div class="logo">
+                    <img src="{{ asset('css/logo.png') }}" alt="">
+                </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('welcome') }}">داشبورد</a></li>
-                <li><a href="{{ route('OrderPage') }}">سفارش‌ها</a></li>
-                <li><a href="{{ route('MenuPage') }}">منو</a></li>
-                <li><a href="{{ route('StoragePage') }}">انبار</a></li>
-                <li><a href="{{ route('ExpensesPage') }}">هزینه‌ها</a></li>
-                <li><a href="#">گزارش‌ها</a></li>
+                <li><a href="{{ route('Dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('OrderPage') }}">Orders</a></li>
+                <li><a href="{{ route('MenuPage') }}">Menus</a></li>
+                <li><a href="{{ route('StoragePage') }}">Storage</a></li>
+                <li><a href="{{ route('ExpensesPage') }}">Expenses</a></li>
+                <li><a href="#">Reports</a></li>
             </ul>
         </nav>
         <!-- Main Content -->
         <div class="main-content">
             <header>
-                <h1>Admin Dashboard</h1>
+                <h1>Expenses</h1>
                 <div class="user-info">
                     <p>Welcome, <span id="username">Admin</span></p>
                 </div>
@@ -47,7 +49,7 @@
 
             <div class="continer">
                 <div class="row">
-                    <h4>Expances</h4>
+                    <br>
                 </div>
                 <div class="row">
                     <div class="col-md-10"></div>
