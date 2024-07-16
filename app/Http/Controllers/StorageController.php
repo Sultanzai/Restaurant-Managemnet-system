@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\StorageView;
 use App\Models\Storage;
 use App\Models\StorageDetail;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class StorageController extends Controller
     {
         $request->validate([
             'unit' => 'integer',
-            'price' => 'integer',
+            'price' => 'nullable|numeric',
             'type' => 'string|max:255',
             'status' => 'string|max:255',
             ]);
@@ -80,6 +81,26 @@ class StorageController extends Controller
         $storageid = StorageDetail::findOrFail($id);
         $storageid->delete();
         return redirect('/StoragePage')->with('success','');
+    }
+
+
+    // Displaying storage data in Dashboard 
+    public function dashboard()
+    {
+        $storages = DB::table('tbl_storage')
+        ->leftJoin('tbl_storage__detail', 'tbl_storage.id', '=', 'tbl_storage__detail.Storage_ID')
+        ->select('tbl_storage.s_Name',
+            'tbl_storage__detail.S_Type',
+            'tbl_storage__detail.S_Unit',
+            'tbl_storage__detail.S_Price',
+            DB::raw('SUM(CASE WHEN S_Status = "In" THEN S_Unit ELSE 0 END) as total_in'),
+            DB::raw('SUM(CASE WHEN S_Status = "Out" THEN S_Unit ELSE 0 END) as total_out'),
+            DB::raw('SUM(CASE WHEN S_Status = "Expired" THEN S_Unit ELSE 0 END) as total_expired')
+        )
+        ->groupBy('tbl_storage.id', 'tbl_storage.s_Name', 'tbl_storage__detail.S_Type', 'tbl_storage__detail.S_Unit', 'tbl_storage__detail.S_Price')
+        ->get();
+
+    return view('Dashboard', compact('storages'));
     }
 
 

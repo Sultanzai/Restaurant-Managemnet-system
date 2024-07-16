@@ -63,6 +63,9 @@
             margin-left: 40%;
             border-radius: 5px;
         }
+        .hidden {
+            display: none;
+        }
 
         @media (max-width: 600px) {
             .form-container {
@@ -84,6 +87,7 @@
         <form action="/AddItems" method="POST">
             @csrf
             <div class="form-group">
+                <label for="name">Storage Items</label>
                 <select name="storage_id" id="storage_id" required>
                     @foreach($storage as $store)
                         <option value="{{ $store->id }}">{{ $store->s_Name }}</option>
@@ -100,12 +104,13 @@
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
-                <Select name="status">
+                <select name="status" id="status">
                     <option value="In">In</option>
                     <option value="Out">Out</option>    
-                </Select>
+                    <option value="Expired">Expired</option>    
+                </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="price-group">
                 <label for="name">Price</label>
                 <input type="text" id="price" name="price">
             </div>
@@ -115,5 +120,21 @@
         </form>
         <a href="{{url('/StoragePage')}}"> <button class="btn">Cancel</button> </a>
     </div>
+
+
+    <script>
+        document.getElementById('status').addEventListener('change', function() {
+            const priceGroup = document.getElementById('price-group');
+            if (this.value === 'In') {
+                priceGroup.classList.remove('hidden');
+            } else {
+                priceGroup.classList.add('hidden');
+            }
+        });
+
+        // Initial check on page load
+        document.getElementById('status').dispatchEvent(new Event('change'));
+    </script>
+
 </body>
 </html>

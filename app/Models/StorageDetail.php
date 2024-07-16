@@ -12,6 +12,7 @@ class StorageDetail extends Model
     protected $table = 'tbl_storage__detail';
 
     protected $fillable = [
+        'id',
         'S_Unit',
         'S_Type',
         'S_Price',
@@ -21,6 +22,6 @@ class StorageDetail extends Model
 
     public function storage()
     {
-        return $this->belongsTo(Storage::class, 'Storage_ID');
+        return $this->belongsTo(Storage::class, 'Storage_ID', 'id');
     }
 }

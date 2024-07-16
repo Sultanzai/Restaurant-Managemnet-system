@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class StorageView extends Model
 {    
-    protected $table = 'storage_details_view';
-    protected $primaryKey = 'detail_id';
+    protected $table = 'storage_view';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
     protected $fillable = [
-        'storage_name',
-        'unit',
-        'type',
-        'price',
-        'status',
         'storage_id',
+        's_Name',
+        's_Unit',
+        's_Type',
+        's_Price',
+        's_Status',
+        'created_at',
     ];
     use HasFactory;
 }

@@ -17,6 +17,6 @@ class Storage extends Model
 
     public function details()
     {
-        return $this->hasMany(StorageDetail::class, 'Storage_ID');
+        return $this->hasMany(StorageDetail::class, 'Storage_ID', 'id');
     }
 }

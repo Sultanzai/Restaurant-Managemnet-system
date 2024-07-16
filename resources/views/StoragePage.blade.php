@@ -67,28 +67,36 @@
                         <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>نام </th>
-                                    <th>قیمت</th>
-                                    <th>واحد </th>
-                                    <th>نوع </th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Unit</th>
+                                    <th>Type</th>
+                                    <th>Price</th>
                                     <th>Status</th>
-                                    <th>Total</th>
                                     <th>Date</th>
-                                    <th>حذف</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($storage as $store)
+                                @php
+                                    if($store->S_Status=='In'){
+                                        $color = 'Green';
+                                    }
+                                    else {
+                                        $color = 'Red';
+                                    }
+                                @endphp
                                 <tr>
-                                    <td>{{ $store->storage_name }}</td>
-                                    <td>{{ $store->price }}</td>
-                                    <td>{{ $store->type }}</td>
-                                    <td>{{ $store->unit }}</td>
-                                    <td>{{ $store->status }}</td>
-                                    <td>{{ $store->unit * $store->price}}</td>
-                                    <td>{{ $store->date}}</td>
+                                    <td>{{ $store->id }}</td>
+                                    <td>{{ $store->s_Name }}</td>
+                                    <td>{{ $store->S_Unit }}</td>
+                                    <td>{{ $store->S_Type }}</td>
+                                    <td>{{ $store->S_Price }}</td>
+                                    <td style='color:{{$color}}'>{{ $store->S_Status}}</td>
+                                    <td>{{ $store->created_at}}</td>
                                     <td>
-                                        <form id="delete-form-{{ $store->detail_id }}" action="{{ route('StoragePage.destroy', $store->detail_id) }}" method="POST" style="display:inline;">
+                                        <form id="delete-form-{{ $store->id }}" action="{{ route('StoragePage.destroy', $store->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" style="background:none; border:none; color:red;">

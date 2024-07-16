@@ -8,20 +8,16 @@ use App\Models\Expenses;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('Dashboard');
-});
-Route::get('/Dashboard', function () {
-    return view('Dashboard');
-})->name('Dashboard');
+
+// Dashboard ==========================
+Route::get('/dashboard', [StorageController::class, 'dashboard'])->name('dashboard');
+
 
 Route::get('/forms', function () {
     return view('forms');
 })->name('forms');
 
-// Route::get('/AddOrder', function () {
-//     return view('AddOrder');
-// })->name('AddOrder');
+
 
 
 // Expenses Routes        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,3 +101,8 @@ Route::post('/OrderPage/{id}', [OrderController::class, 'update'])->name('orders
 
 // Deleting
 Route::delete('/OrderPage/{ord}', [OrderController::class, 'destroy'])->name('OrderPage.destroy');
+
+
+
+
+

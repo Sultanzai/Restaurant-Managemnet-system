@@ -28,7 +28,7 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('Dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('OrderPage') }}">Orders</a></li>
                 <li><a href="{{ route('MenuPage') }}">Menus</a></li>
                 <li><a href="{{ route('StoragePage') }}">Storage</a></li>
@@ -71,44 +71,19 @@
                     <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
-                                <th>نام</th>
-                                <th>واحدها</th>
-                                <th>نوع واحد</th>
-                                <th>X</th>
-
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Unit</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($storages as $store)
                             <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
+                                <td>{{ $store->s_Name }}</td>
+                                <td>{{ $store->S_Type }}</td>
+                                <td>{{ $store->total_in - $store->total_out - $store->total_expired }}</td>
                             </tr>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
-                            <tr>
-                                <td>شیر</td>
-                                <td>10</td>
-                                <td>لیتر</td>
-                                <td>X</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                         {{-- <tfoot>
                             <tr>
