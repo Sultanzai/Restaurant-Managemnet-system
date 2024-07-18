@@ -107,8 +107,7 @@
                 <select name="status" id="status">
                     <option value="In">In</option>
                     <option value="Out">Out</option>    
-                    <option value="Expired">Expired</option>    
-                </select>
+                </Select>
             </div>
             <div class="form-group" id="price-group">
                 <label for="name">Price</label>
