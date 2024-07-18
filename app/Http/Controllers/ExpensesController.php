@@ -11,6 +11,12 @@ class ExpensesController extends Controller
         $expenses = Expenses::all(); // Retrieve all expenses from the database
         return view('ExpensesPage', compact('expenses')); // Pass the expenses to the view
     }
+    public function Report()
+    {
+        $expenses = Expenses::all(); // Retrieve all expenses from the database
+        $totalAmount = $expenses->sum('E_Amount'); // Total amount 
+        return view('ExpensesReport', compact('expenses','totalAmount')); // Pass the expenses to the view
+    }
     public function edit($id)
     {
         $expense = Expenses::find($id);

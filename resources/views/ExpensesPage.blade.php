@@ -30,7 +30,7 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('Dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('OrderPage') }}">Orders</a></li>
                 <li><a href="{{ route('MenuPage') }}">Menus</a></li>
                 <li><a href="{{ route('StoragePage') }}">Storage</a></li>

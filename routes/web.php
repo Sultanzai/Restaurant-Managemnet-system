@@ -17,11 +17,15 @@ Route::get('/forms', function () {
     return view('forms');
 })->name('forms');
 
+Route::get('/ExpensesReport', function () {
+    return view('ExpensesReport');
+})->name('ExpensesReport');
 
 
 
 // Expenses Routes        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/ExpensesPage', [ExpensesController::class, 'index'])->name('ExpensesPage');
+Route::get('/ExpensesReport', [ExpensesController::class, 'Report'])->name('ExpensesReport');
 
 Route::get('/InsertExpenses', function () {
     return view('InsertExpenses');
