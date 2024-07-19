@@ -64,35 +64,33 @@
             <div class="continer">
                 
                 <div class="row">
-                    <div class="col-md-6"><h4>نمایش گراف</h4></div>
-
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <h4>هشدار انبار</h4>
                     <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
-                                <th>Type</th>
-                                <th>Unit</th>
+                                <th>Total In</th>
+                                <th>Total Out</th>
+                                <th>Total Expired</th>
+                                <th>Remaining</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($storages as $store)
+                            @foreach ($storage as $items)
                             <tr>
-                                <td>{{ $store->s_Name }}</td>
-                                <td>{{ $store->S_Type }}</td>
-                                <td>{{ $store->total_in - $store->total_out - $store->total_expired }}</td>
+                                <td>{{ $items->storage_id }}</td>
+                                <td>{{ $items->s_Name }}</td>
+                                <td>{{ $items->total_in }}</td>
+                                <td>{{ $items->total_out }}</td>
+                                <td>{{ $items->total_expired }}</td>
+                                <td>{{ $items->total_in - $items->total_out - $items->total_expired}}</td>
+                                <td>{{ $items->created_at }}</td>
                             </tr>
                             @endforeach
                         </tbody>
-                        {{-- <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                            </tr>
-                        </tfoot> --}}
                     </table>
                 </div>
                 </div>

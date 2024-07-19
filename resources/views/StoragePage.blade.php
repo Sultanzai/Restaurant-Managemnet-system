@@ -21,6 +21,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    {{-- Handel the erro Messages --}}
+    @if(session('error'))
+        <div id="error-message" style="display: none;">
+            {{ session('error') }}
+        </div>
+        <script>
+            alert(document.getElementById('error-message').innerText);
+        </script>
+    @endif
+        @if(session('success'))
+        <div id="success-message" style="display: none;">
+            {{ session('success') }}
+        </div>
+        <script>
+            alert(document.getElementById('success-message').innerText);
+        </script>
+    @endif
+
+
+
+
     <div class="containerr">
         <!-- Sidebar -->
         <nav class="sidebar">
@@ -30,7 +51,7 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('Dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('OrderPage') }}">Orders</a></li>
                 <li><a href="{{ route('MenuPage') }}">Menus</a></li>
                 <li><a href="{{ route('StoragePage') }}">Storage</a></li>

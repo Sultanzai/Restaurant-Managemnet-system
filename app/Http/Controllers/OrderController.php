@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Menu;
 use App\Models\OrderDetail;
+use App\Models\OrderDetailsView;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
     public function index()
@@ -123,8 +124,38 @@ class OrderController extends Controller
     // Delete Order 
     public function destroy($id)
     {
-        $expense = Order::findOrFail($id);
-        $expense->delete();
+        $order = Order::findOrFail($id);
+        $order->delete();
         return redirect()->route('OrderPage')->with('success', 'Expense deleted successfully');
+    }
+
+
+    // Order Report ======================================================================
+    public function Report()
+    {
+        $orderDetails = DB::table('order_receipt_view')
+            ->get();
+            
+            if ($orderDetails->isEmpty()) {
+                return redirect()->back()->with('error', 'Order not found.');
+            }
+
+        $totalAmount = $orderDetails->sum('OD_Price'); // Total amount 
+        return view('OrderReport', compact('orderDetails', 'totalAmount'));
+    }
+
+    
+    // Print Order ======================================================================
+    public function show($orderId)
+    {
+        $orderDetails = DB::table('order_receipt_view')
+            ->where('order_id', $orderId)
+            ->get();
+
+        if ($orderDetails->isEmpty()) {
+            return redirect()->back()->with('error', 'Order not found.');
+        }
+
+        return view('PrintOrder', compact('orderDetails'));
     }
 }

@@ -25,6 +25,7 @@ Route::get('/ExpensesReport', function () {
 
 // Expenses Routes        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/ExpensesPage', [ExpensesController::class, 'index'])->name('ExpensesPage');
+// Report
 Route::get('/ExpensesReport', [ExpensesController::class, 'Report'])->name('ExpensesReport');
 
 Route::get('/InsertExpenses', function () {
@@ -91,6 +92,9 @@ Route::post('AddItems', [StorageController::class, 'AddItems'])->name('AddItems'
 // Delete
 Route::delete('/StoragePage/{exp}', [StorageController::class, 'destroy'])->name('StoragePage.destroy');
 
+// Report 
+Route::get('/StorageReport', [StorageController::class, 'Report'])->name('StorageReport');
+
 
 // Order Routes       /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,6 +109,13 @@ Route::post('/OrderPage/{id}', [OrderController::class, 'update'])->name('orders
 
 // Deleting
 Route::delete('/OrderPage/{ord}', [OrderController::class, 'destroy'])->name('OrderPage.destroy');
+
+// Print Order 
+Route::get('/PrintOrder/{orderId}', [OrderController::class, 'show'])->name('PrintOrder');
+
+// Report 
+Route::get('/OrderReport', [OrderController::class, 'Report'])->name('OrderReport');
+
 
 
 

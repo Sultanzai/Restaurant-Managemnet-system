@@ -33,7 +33,7 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('Dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('OrderPage') }}">Orders</a></li>
                 <li><a href="{{ route('MenuPage') }}">Menus</a></li>
                 <li><a href="{{ route('StoragePage') }}">Storage</a></li>
@@ -73,6 +73,7 @@
                                 <th>Unit</th>
                                 <th>Total</th>
                                 <th>Status</th>
+                                <th>Print</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -86,6 +87,7 @@
                                     <td>{{$item["OD_Units"]}}</td>
                                     <td>{{$item["OD_Prices"]}}</td>
                                     <td>{{$item["O_Status"]}}</td>
+                                    <td><i class="fa fa-print" style="font-size:20px; margin-right:20px;" onclick="viewOrder({{ $item['Order_ID'] }})"></i></td>
                                     <td><a href="{{ route('EditOrder', $item["Order_ID"]) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
                                     <td>
                                         <form id="delete-form-{{ $item["Order_ID"] }}" action="{{ route('OrderPage.destroy', $item["Order_ID"]) }}" method="POST" style="display:inline;">
@@ -112,6 +114,10 @@
         $(document).ready(function() {
             $('#example').DataTable();
         });
+
+        function viewOrder(orderId) {
+        window.location.href = '/PrintOrder/' + orderId;
+        }
     </script>
 </body>
 </html>
