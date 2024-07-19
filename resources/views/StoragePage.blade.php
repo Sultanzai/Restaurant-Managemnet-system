@@ -30,7 +30,7 @@
             alert(document.getElementById('error-message').innerText);
         </script>
     @endif
-        @if(session('success'))
+    @if(session('success'))
         <div id="success-message" style="display: none;">
             {{ session('success') }}
         </div>

@@ -24,29 +24,12 @@ class StorageController extends Controller
 
     public function AddItems(Request $request)
     {
-        $summary = DB::table('storage_main_view')
-            ->select(
-                DB::raw('total_in'),
-                DB::raw('total_out'),
-                DB::raw('total_expired')
-            )
-            ->first();
-
-        $totalIn = $summary->total_in;
-        $totalOut = $summary->total_out;
-        $totalExpired = $summary->total_expired;
-        $remaining = $totalIn - $totalOut - $totalExpired; 
-
         $request->validate([
             'unit' => 'integer',
             'price' => 'nullable|numeric',
             'type' => 'nullable|max:255',
             'status' => 'string|max:255',
-        ]);
-
-        if ($remaining < $request->unit) {
-            return redirect()->back()->with('error', 'Storage is low in units.');
-        }
+            ]);
 
         $storagedetail = StorageDetail::create([
             'S_Unit' => $request->unit,
@@ -59,8 +42,7 @@ class StorageController extends Controller
         if (!$storagedetail) {
             throw new \Exception('Item detail creation failed');
         }
-        
-        return redirect('/StoragePage')->with('success', 'Item added successfully.');
+        return redirect('/StoragePage')->with('success','');
     }
 
     public function store(Request $request)
