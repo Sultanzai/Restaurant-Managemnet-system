@@ -21,9 +21,10 @@
 <body>
     <div class="containerr">
         <!-- Sidebar -->
-        <nav class="sidebar">
+        <nav class="sidebar" style="height: 200vh">
             <div class="sidebar-header">
                 <div class="logo">
+                    
                     <img src="{{ asset('css/logo.png') }}" alt="">
                 </div>
             </div>
@@ -33,7 +34,6 @@
                 <li><a href="{{ route('MenuPage') }}">Menus</a></li>
                 <li><a href="{{ route('StoragePage') }}">Storage</a></li>
                 <li><a href="{{ route('ExpensesPage') }}">Expenses</a></li>
-                <li><a href="#">Reports</a></li>
             </ul>
         </nav>
         <!-- Main Content -->
@@ -44,28 +44,42 @@
                     <p>Welcome <span id="username">Admin</span></p>
                 </div>
             </header>
-            <main>
+            <main  style="text-align: left;">
                 <!-- Add your main dashboard content here -->
-                <h4>Orders</h4>
+                <h4>Sales</h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>سفارش‌های روزانه: 15</p></div>
-                    <div class="card"><p>سفارش‌های هفتگی: 90</p></div>
-                    <div class="card"><p>سفارش‌های ماهانه: 28</p></div>
-                    <div class="card"><p>کل سفارش‌ها: 28</p></div>
+                    <div class="card"><p>Daily Sales</p></div>
+                    <div class="card"><p>Weekly Sales</p></div>
+                    <div class="card"><p>Monthly Sales</p></div>
+                    <div class="card"><p>Total Sales</p></div>
                 </div>
-                <h4>هزینه‌ها</h4>
+                <h4>Profit</h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>سفارش‌های روزانه: 15</p></div>
-                    <div class="card"><p>سفارش‌های هفتگی: 90</p></div>
-                    <div class="card"><p>سفارش‌های ماهانه: 28</p></div>
-                    <div class="card"><p>کل هزینه‌ها: 28</p></div>
+                    <div class="card"><p>Daily Profit</p></div>
+                    <div class="card"><p>Weekly Profit</p></div>
+                    <div class="card"><p>Monthly Profit</p></div>
+                    <div class="card"><p>Total Profit</p></div>
+                </div>
+                <h4>Expenses</h4>
+                <div class="dashboard-cards">
+                    <div class="card"><p>Daily Expenses</p></div>
+                    <div class="card"><p>Weekly Expenses</p></div>
+                    <div class="card"><p>Monthly Expenses</p></div>
+                    <div class="card"><p>Total Expenses</p></div>
+                </div>
+                <h4>Storage Fees</h4>
+                <div class="dashboard-cards">
+                    <div class="card"><p>Daily Storage Fees</p></div>
+                    <div class="card"><p>Weekly Storage Fees</p></div>
+                    <div class="card"><p>Monthly Storage Fees</p></div>
+                    <div class="card"><p>Total Storage Fees</p></div>
                 </div>
             </main>
             <div class="continer">
                 
                 <div class="row">
                     <div class="col-md-12">
-                        <h4>هشدار انبار</h4>
+                        <h4>Storage Alert</h4><br>
                     <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
@@ -93,9 +107,6 @@
                         </tbody>
                     </table>
                 </div>
-                </div>
-                <div class="row">
-                    <h4>نمایش گراف فروش ماهانه</h4>
                 </div>
             </div>
                 

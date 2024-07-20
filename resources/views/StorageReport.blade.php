@@ -71,7 +71,7 @@
         }
         .set{
             display: flex;
-            justify-content: space-between;
+            align-items: space;
             width: 100%;
             text-align: left;
         }

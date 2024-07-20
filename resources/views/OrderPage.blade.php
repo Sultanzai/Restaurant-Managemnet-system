@@ -38,7 +38,6 @@
                 <li><a href="{{ route('MenuPage') }}">Menus</a></li>
                 <li><a href="{{ route('StoragePage') }}">Storage</a></li>
                 <li><a href="{{ route('ExpensesPage') }}">Expenses</a></li>
-                <li><a href="#">Reports</a></li>
             </ul>
         </nav>
 
@@ -54,10 +53,13 @@
             <div class="continer">
                 <br>
                 <div class="row">
-                    <div class="col-md-6">                    
-                        <a href="{{url('/AddOrder')}}"><button class="btn dark-bg-btn">Add Menu</button></a>
+                    <div class="col-md">                    
+                        <a href="{{url('/AddOrder')}}"><button class="btn dark-bg-btn">Add Order</button></a>
                     </div>
-                    <div class="col-md"></div>
+                    <div class="col-md">                    
+                        <a href="{{url('/OrderReport')}}"><button class="btn dark-bg-btn">Report</button></a>
+                    </div>
+                    <div class="col-md-8"></div>
                 </div>
             </div>
 

@@ -20,6 +20,7 @@ i{
     color: #fff;
     padding: 20px;
     box-sizing: border-box;
+    max-height: 150vh;
 }
 
 .sidebar-header {
@@ -102,11 +103,19 @@ header h1 {
 .dashboard-cards {
     display: flex;
     justify-content:space-evenly;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
 }
-
+h4{
+    margin-left: 10px;
+    font-size: 28px;
+    font-weight: 600;
+}
+.dashboard-cards p{
+    margin: auto;
+}
 .card {
     width: 100px;
     height: 100px;
@@ -115,7 +124,7 @@ header h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     flex: 1;
-    margin-right: 20px;
+    margin: 10px;
     box-sizing: border-box;
 }
 
@@ -157,14 +166,6 @@ table.dataTable thead th,table.dataTable thead td,table.dataTable tfoot th,table
         margin-bottom: 0;
     }
 }
-
-
-
-
-
-
-
-
 
 .logo img{
     position: relative;

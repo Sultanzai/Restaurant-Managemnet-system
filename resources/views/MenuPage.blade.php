@@ -30,12 +30,11 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('Dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('OrderPage') }}">Orders</a></li>
                 <li><a href="{{ route('MenuPage') }}">Menus</a></li>
                 <li><a href="{{ route('StoragePage') }}">Storage</a></li>
                 <li><a href="{{ route('ExpensesPage') }}">Expenses</a></li>
-                <li><a href="#">Reports</a></li>
             </ul>
         </nav>
 
@@ -49,12 +48,11 @@
             </header>
 
             <div class="continer">
-                <br>
                 <div class="row">
-                    <div class="col-md-6">                    
-                        <a href="{{url('/InsertMenu')}}"><button class="btn dark-bg-btn">Add Menu</button></a>
+                    <div class="col-md">                    
+                        <a href="{{url('/InsertMenu')}}"><button class="btn dark-bg-btn">Add Menu</button></a> <br><br>
                     </div>
-                    <div class="col-md"></div>
+                    <div class="col-md-8"></div>
                 </div>
                 {{-- Data table contents --}}
                 <div class="row">
@@ -113,4 +111,3 @@
     </script>
 </body>
 </html>
-```

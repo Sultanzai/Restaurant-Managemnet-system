@@ -56,7 +56,6 @@
                 <li><a href="{{ route('MenuPage') }}">Menus</a></li>
                 <li><a href="{{ route('StoragePage') }}">Storage</a></li>
                 <li><a href="{{ route('ExpensesPage') }}">Expenses</a></li>
-                <li><a href="#">Reports</a></li>
             </ul>
         </nav>
 
@@ -78,7 +77,7 @@
                         
                         <a href="{{url('/AddItems')}}"><button class="btn dark-bg-btn" >In & Out</button></a>
                         
-                        <button class="btn dark-bg-btn">Report</button>
+                        <a href="{{url('/StorageReport')}}"><button class="btn dark-bg-btn">Report</button></a>
                     </div>
                     <div class="col-md"></div>
                 </div>
