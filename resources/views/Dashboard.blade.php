@@ -24,7 +24,6 @@
         <nav class="sidebar" style="height: 200vh">
             <div class="sidebar-header">
                 <div class="logo">
-                    
                     <img src="{{ asset('css/logo.png') }}" alt="">
                 </div>
             </div>
@@ -38,12 +37,12 @@
         </nav>
         <!-- Main Content -->
         <div class="main-content">
-            <header>
-                <h1>Dashboard</h1>
-                <div class="user-info">
-                    <p>Welcome <span id="username">Admin</span></p>
-                </div>
-            </header>
+            {{-- User Name Record --}}
+            @include('layouts.header')
+            <div class="container">
+                @yield('content')
+            </div>
+
             <main  style="text-align: left;">
                 <!-- Add your main dashboard content here -->
                 <h4>Sales</h4>
@@ -118,6 +117,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#example').DataTable();

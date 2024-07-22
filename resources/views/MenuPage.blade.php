@@ -40,12 +40,10 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <header>
-                <h1>Menu </h1>
-                <div class="user-info">
-                    <p>Welcome <span id="username">Admin</span></p>
-                </div>
-            </header>
+            @include('layouts.header')
+            <div class="container">
+                @yield('content')
+            </div>
 
             <div class="continer">
                 <div class="row">

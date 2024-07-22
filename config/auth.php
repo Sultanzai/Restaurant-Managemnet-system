@@ -1,22 +1,6 @@
 <?php
 
 return [
-    
-'guards' => [
-    'web' => [
-        'driver' => 'session',
-        'provider' => 'users',
-    ],
-    // other guards...
-],
-
-'providers' => [
-    'users' => [
-        'driver' => 'eloquent',
-        'model' => App\Models\User::class,
-    ],
-    // other providers...
-],
 
     /*
     |--------------------------------------------------------------------------

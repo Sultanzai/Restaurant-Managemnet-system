@@ -17,14 +17,10 @@ Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('r
 Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+
 // Protected Routes ==========================
 
 Route::middleware('auth')->group(function () {
-
-    // Dashboard ==========================
-    Route::get('/forms', function () {
-        return view('forms');
-    })->name('forms');
 
     Route::get('/ExpensesReport', function () {
         return view('ExpensesReport');
