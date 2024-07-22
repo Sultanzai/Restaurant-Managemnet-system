@@ -48,31 +48,32 @@
                 <!-- Add your main dashboard content here -->
                 <h4>Sales</h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>Daily Sales</p></div>
-                    <div class="card"><p>Weekly Sales</p></div>
-                    <div class="card"><p>Monthly Sales</p></div>
-                    <div class="card"><p>Total Sales</p></div>
+
+                    <div class="card"><p>Total Sales: {{$totalsales}}</p></div>
+                    <div class="card"><p>Monthly Sales: {{$monthlysales}}</p></div>
+                    <div class="card"><p>Weekly Sales: {{$weeklysales}}</p></div>
+                    <div class="card"><p>Daily Sales: {{$dailysales}}</p></div>
                 </div>
                 <h4>Profit</h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>Daily Profit</p></div>
-                    <div class="card"><p>Weekly Profit</p></div>
-                    <div class="card"><p>Monthly Profit</p></div>
-                    <div class="card"><p>Total Profit</p></div>
+                    <div class="card"><p>Total Profit: {{$totalsales - $totalExpenses - $totalstorage}}</p></div>
+                    <div class="card"><p>Monthly Profit: {{$monthlysales - $monthlyExpenses - $monthlystorage}}</p></div>
+                    <div class="card"><p>Weekly Profit: {{$weeklysales - $weeklyExpenses - $weeklystorage}}</p></div>
+                    <div class="card"><p>Daily Profit: {{$dailysales - $dailyExpenses - $dailystorage}}</p></div>
                 </div>
                 <h4>Expenses</h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>Daily Expenses</p></div>
-                    <div class="card"><p>Weekly Expenses</p></div>
-                    <div class="card"><p>Monthly Expenses</p></div>
-                    <div class="card"><p>Total Expenses</p></div>
+                    <div class="card"><p>Total: {{$totalExpenses}}</p></div>
+                    <div class="card"><p>Monthly: {{$monthlyExpenses}}</p></div>
+                    <div class="card"><p>Weekly: {{$weeklyExpenses}}</p></div>
+                    <div class="card"><p>Daily: {{$dailyExpenses}} </p></div>
                 </div>
-                <h4>Storage Fees</h4>
+                <h4>Storage </h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>Daily Storage Fees</p></div>
-                    <div class="card"><p>Weekly Storage Fees</p></div>
-                    <div class="card"><p>Monthly Storage Fees</p></div>
-                    <div class="card"><p>Total Storage Fees</p></div>
+                    <div class="card"><p>Total: {{$totalstorage}}</p></div>
+                    <div class="card"><p>Monthly: {{$monthlystorage}}</p></div>
+                    <div class="card"><p>Weekly: {{$weeklystorage}}</p></div>
+                    <div class="card"><p>Daily: {{$dailystorage}}</p></div>
                 </div>
             </main>
             <div class="continer">
@@ -93,7 +94,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($storage as $items)
+                            {{-- @foreach ($storage as $items)
                             <tr>
                                 <td>{{ $items->storage_id }}</td>
                                 <td>{{ $items->s_Name }}</td>
@@ -103,7 +104,7 @@
                                 <td>{{ $items->total_in - $items->total_out - $items->total_expired}}</td>
                                 <td>{{ $items->created_at }}</td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>

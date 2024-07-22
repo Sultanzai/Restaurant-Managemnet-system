@@ -98,7 +98,7 @@
                     <div class="menu-grid">
                         @foreach($menus->where('m_category', $category->m_category) as $menu)
                             <div class="menu-item" ondblclick="addToCart({{ $menu->id }}, '{{ $menu->m_Name }}', {{ $menu->m_Price }})">
-                                {{ $menu->m_Name }} - ${{ number_format($menu->m_Price, 2) }}
+                                {{ $menu->m_Name }} - AF - {{ number_format($menu->m_Price, 2) }}
                             </div>
                         @endforeach
                     </div>
@@ -157,7 +157,7 @@
                 itemDiv.className = 'list-group-item cart-item';
                 itemDiv.id = 'cart-item-' + id;
                 itemDiv.innerHTML = `
-                    <span>${name} - $<span class="item-price">${price.toFixed(2)}</span></span>
+                    <span>${name} - <span class="item-price">${price.toFixed(2)}</span></span>
                     <input type="hidden" name="items[${id}][Menu_ID]" value="${id}">
                     <input type="hidden" name="items[${id}][OD_Price]" class="item-total-price" value="${price}">
                     <input type="number" name="items[${id}][OD_Units]" class="form-control quantity" value="1" min="1" style="width: 60px; display: inline-block; margin-right: 10px;" onchange="updateTotalPrice(this.closest('.cart-item'), ${price})">
