@@ -129,6 +129,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Place Order</button>
+            <br><br><br><br><br>
         </form>
     </div>
 

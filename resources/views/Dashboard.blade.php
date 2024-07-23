@@ -64,7 +64,7 @@
                     <div class="card"><p>Total Profit: {{$totalsales - $totalExpenses - $totalstorage}}</p></div>
                     <div class="card"><p>Monthly Profit: {{$monthlysales - $monthlyExpenses - $monthlystorage}}</p></div>
                     <div class="card"><p>Weekly Profit: {{$weeklysales - $weeklyExpenses - $weeklystorage}}</p></div>
-                    <div class="card"><p>Daily Profit: {{$dailysales - $dailyExpenses - $dailystorage}}</p></div>
+                    <div class="card"><p>Daily Profit: {{$dailysales -$dailyExpenses - $dailystorage}}</p></div>
                 </div>
                 <h4>Expenses</h4>
                 <div class="dashboard-cards">
@@ -99,7 +99,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($storage as $items)
+                            @foreach ($storage as $items)
                             <tr>
                                 <td>{{ $items->storage_id }}</td>
                                 <td>{{ $items->s_Name }}</td>
@@ -109,7 +109,7 @@
                                 <td>{{ $items->total_in - $items->total_out - $items->total_expired}}</td>
                                 <td>{{ $items->created_at }}</td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
