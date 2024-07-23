@@ -184,3 +184,20 @@ table.dataTable thead th,table.dataTable thead td,table.dataTable tfoot th,table
     align-content: left;
     justify-content: left;
 }
+.logout{
+    position: relative;
+    width: 80px;
+    height: 30px;
+    color: white;
+    background-color: #444444;
+    border-radius:5px;
+    font-size: 18px;
+    font-family: inherit;
+    margin-right: 93.5%;
+    top: -35px;
+    transition: ease-in;
+    margin-bottom: 20px;
+}
+.logout:hover{
+    background-color: #000;
+}

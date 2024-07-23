@@ -42,7 +42,13 @@
             <div class="container">
                 @yield('content')
             </div>
-
+            {{-- Logout Button --}}
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>    
+            <button class="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </button>
             <main  style="text-align: left;">
                 <!-- Add your main dashboard content here -->
                 <h4>Sales</h4>
