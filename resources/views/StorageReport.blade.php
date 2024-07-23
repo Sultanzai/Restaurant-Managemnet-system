@@ -82,7 +82,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="filterStorage()">
     <div class="container">
         <h1>Storage Report Page</h1>
         <form id="filter-form">
@@ -153,7 +153,7 @@
         </table>
         <h3>Total Amount: <span id="total-amount">{{ $totalAmount }}</span></h3>
         <a href="javascript:window.print()" class="btn btn-print">Print</a>
-        <a href="{{ url()->previous() }}" class="btn btn-back">Back</a>
+        <a href="{{ route('StoragePage') }}" class="btn btn-back">Back</a>
     </div>
 
     <script>
@@ -170,9 +170,10 @@
                 const cells = rows[i].getElementsByTagName('td');
                 const name = cells[1].innerText.toLowerCase();
                 const type = cells[2].innerText.toLowerCase();
-                const unit = cells[3].innerText.toLowerCase();
+                const unitText = cells[3].innerText;
                 const priceText = cells[4].innerText;
-                const amount = priceText ? parseFloat(priceText) : 0; // Handle null or empty values
+                const unit = unitText ? parseFloat(unitText) : 0; // Handle null or empty values
+                const price = priceText ? parseFloat(priceText) : 0; // Handle null or empty values
                 const status = cells[5].innerText.toLowerCase();
                 const createdAt = new Date(cells[6].innerText);
 
@@ -196,7 +197,7 @@
 
                 if (showRow) {
                     rows[i].style.display = '';
-                    totalAmount += amount;
+                    totalAmount += unit * price;
                 } else {
                     rows[i].style.display = 'none';
                 }

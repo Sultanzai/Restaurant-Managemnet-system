@@ -43,6 +43,7 @@
         .form-group input {
             width: 100%;
             padding: 10px;
+            font-size: 20px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -50,9 +51,11 @@
         select {
             width: 100%;
             padding: 10px;
+            font-size: 20px;
         }
         textarea{
             width: 100%;
+            font-size: 20px;
             font-family: Arial, sans-serif;
         }
         .form-group input:focus {
@@ -95,10 +98,11 @@
             <div class="form-group">
                 <label for="E_Type">Type</label>
                 <select id="E_Type" name="E_Type" class="form-control" required>
-                    <option value="Restaurent" {{ old('E_Type', $expense->E_Type) == 'Restaurent' ? 'selected' : '' }}>Restaurent</option>
-                    <option value="Stuffs" {{ old('E_Type', $expense->E_Type) == 'Stuffs' ? 'selected' : '' }}>Stuffs</option>
-                    <option value="Others" {{ old('E_Type', $expense->E_Type) == 'Others' ? 'selected' : '' }}>Others</option>
-                    <option value="Salaries" {{ old('E_Type', $expense->E_Type) == 'Salaries' ? 'selected' : '' }}>Salaries</option>
+                    <option value="رستوران" {{ old('E_Type', $expense->E_Type) == 'رستوران' ? 'selected' : '' }}>رستوران</option>
+                    <option value="کارمندان" {{ old('E_Type', $expense->E_Type) == 'کارمندان' ? 'selected' : '' }}>کارمندان</option>
+                    <option value="بل برق" {{ old('E_Type', $expense->E_Type) == 'بل برق' ? 'selected' : '' }}>بل برق</option>
+                    <option value="کرایه" {{ old('E_Type', $expense->E_Type) == 'کرایه' ? 'selected' : '' }}>کرایه</option>
+                    <option value="و غیره" {{ old('E_Type', $expense->E_Type) == 'و غیره' ? 'selected' : '' }}>و غیره</option>
                 </select>
             </div>
             <div class="form-group">

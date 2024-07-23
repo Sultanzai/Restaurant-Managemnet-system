@@ -42,6 +42,7 @@
         .form-group input {
             width: 100%;
             padding: 10px;
+            font-size: 20px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -49,7 +50,7 @@
         select {
             width: 100%;
             padding: 10px;
-            font-size: 16px;
+            font-size: 20px;
         }
         .form-group input:focus {
             border-color: #007bff;

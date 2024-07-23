@@ -44,12 +44,13 @@
             padding: 10px;
             box-sizing: border-box;
             border: 1px solid #ccc;
+            font-size: 20px;
             border-radius: 4px;
         }
         select {
             width: 100%;
             padding: 10px;
-            font-size: 16px;
+            font-size: 20px;
         }
         .form-group input:focus {
             border-color: #007bff;
@@ -90,10 +91,11 @@
             <div class="form-group">
                 <label for="address">Type</label>
                 <Select name="type">
-                    <option value="Restaurent">Restaurent</option>
-                    <option value="Stuffs">Stuffs</option>
-                    <option value="Others">Others</option>
-                    <option value="Salaries">Salaries</option>
+                    <option value="رستوران">رستوران</option>
+                    <option value="کارمندان">کارمندان</option>
+                    <option value="بل برق">بل برق</option>
+                    <option value="کرایه">کرایه</option>
+                    <option value="و غیره">و غیره</option>
                 </Select>
             </div>
             <div class="form-group">

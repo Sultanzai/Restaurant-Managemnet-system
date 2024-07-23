@@ -95,10 +95,11 @@
                     <label for="expense_type">Expense Type:</label>
                     <select id="expense_type" name="expense_type">
                         <option value="">All</option>
-                        <option value="stuffs">Stuffs</option>
-                        <option value="restaurant">Restaurant</option>
-                        <option value="salary">Salary</option>
-                        <option value="other">Other</option>
+                        <option value="رستوران">رستوران</option>
+                        <option value="کارمندان">کارمندان</option>
+                        <option value="بل برق">بل برق</option>
+                        <option value="کرایه">کرایه</option>
+                        <option value="و غیره">و غیره</option>
                     </select>
                 </div>
             </div>

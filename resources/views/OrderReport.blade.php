@@ -143,7 +143,7 @@
         </table>
         <h3>Total Amount: <span id="total-amount">{{ $totalAmount }}</span></h3>
         <a href="javascript:window.print()" class="btn btn-print">Print</a>
-        <a href="{{ url()->previous() }}" class="btn btn-back">Back</a>
+        <a href="{{ route('OrderPage') }}" class="btn btn-back">Back</a>
     </div>
 
     <script>

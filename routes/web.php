@@ -24,9 +24,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/ExpensesReport', function () {
-        return view('ExpensesReport');
-    })->name('ExpensesReport');
+    Route::get('/ExpensesReport', [ExpensesController::class, 'Report'])->name('ExpensesReport');
 
     // Expenses Routes
     Route::get('/ExpensesPage', [ExpensesController::class, 'index'])->name('ExpensesPage');

@@ -49,10 +49,11 @@
         select {
             width: 100%;
             padding: 10px;
-            font-size: 16px;
+            font-size: 20px;
         }
         .form-group input:focus {
             border-color: #007bff;
+            font-size: 20px;
         }
         .btn{
             width: 90px;
@@ -94,11 +95,16 @@
             <div class="form-group">
                 <label for="name">Category</label>
                 <select name="category" id="category">
-                    <option value="Ice Cream">Ice Cream</option>
-                    <option value="Burger">Burger</option>
-                    <option value="Jucie">juice</option>
-                    <option value="Kabab">Kabab</option>
-                    <option value="Break fast">Break fast</option>
+                    <option value="ترکاری">ترکاری</option>
+                    <option value="کباب مرغ">کباب مرغ</option>
+                    <option value="شورمه">شورمه</option>
+                    <option value="کرایی">کرایی</option>
+                    <option value="شیریخ">شیریخ</option>
+                    <option value="آیسکریم">آیسکریم</option>
+                    <option value="کرایی مرغ">کرایی مرغ</option>
+                    <option value="چای پراته">چای پراته</option>
+                    <option value="جوس چهار فصل">جوس چهار فصل</option>
+                    <option value="نوشابه ها">نوشابه ها</option>
                 </select>
                 {{-- <input type="text" id="category" name="category"> --}}
             </div>
