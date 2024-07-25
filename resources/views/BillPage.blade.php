@@ -59,12 +59,10 @@
                 <br>
                 <div class="row">
                     <div class="col-md">                    
-                        <a href="{{url('/AddOrder')}}"><button class="btn dark-bg-btn">Add Order</button></a>
+                        <a href="{{url('/create_bill')}}"><button class="btn dark-bg-btn">Create Bills</button></a>
                     </div>
-                    <div class="col-md">                    
-                        <a href="{{url('/OrderReport')}}"><button class="btn dark-bg-btn">Report</button></a>
-                    </div>
-                    <div class="col-md-8"></div>
+
+                    <div class="col-md-10"></div>
                 </div>
             </div>
 
@@ -75,29 +73,34 @@
                         <thead>
                             <tr>
                                 <th>آیدی</th>
+                                <th>نمبر</th>
                                 <th>نام</th>
-                                <th>منو</th>
-                                <th>تعداد</th>
                                 <th>مجموع</th>
-                                <th>حالت پرداخت</th>
+                                <th>وصول</th>
+                                <th>بقایه</th>
+                                <th>جزیات</th>
+                                <th>تاریخ</th>
                                 <th>چاپ</th>
                                 <th>اپدیت</th>
                                 <th>حذف</th>                                
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orderData as $item)
+                            @foreach ($bills as $bill)
                                 <tr>
-                                    <td>{{$item["Order_ID"]}}</td>
-                                    <td>{{$item["O_Name"]}}</td>
-                                    <td>{{$item["Menu_Names"]}}</td>
-                                    <td>{{$item["OD_Units"]}}</td>
-                                    <td>{{$item["OD_Prices"]}}</td>
-                                    <td>{{$item["O_Status"]}}</td>
-                                    <td><i class="fa fa-print" style="font-size:20px; margin-right:20px;" onclick="viewOrder({{ $item['Order_ID'] }})"></i></td>
-                                    <td><a href="{{ route('EditOrder', $item["Order_ID"]) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
+                                    <td>{{$bill->id}}</td>
+                                    <td>{{$bill->B_Number}}</td>
+                                    <td>{{$bill->B_Name}}</td>
+                                    <td>{{$bill->B_Total}}</td>
+                                    <td>{{$bill->B_Paid}}</td>
+                                    <td>{{$bill->B_Total - $bill->B_Paid}}</td>
+                                    <td>{{$bill->B_Description}}</td>
+                                    <td>{{$bill->created_at->format('Y-m-d')}}</td>
+                                    
+                                    <td><i class="fa fa-print" style="font-size:20px; margin-right:20px;" onclick="viewOrder({{ $bill->id }})"></i></td>
+                                    <td><a href="{{ route('bills.edit', $bill->id) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
                                     <td>
-                                        <form id="delete-form-{{ $item["Order_ID"] }}" action="{{ route('OrderPage.destroy', $item["Order_ID"]) }}" method="POST" style="display:inline;">
+                                        <form id="delete-form-{{ $bill->id }}" action="{{ route('BillPage.destroy', $bill->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" style="background:none; border:none; color:red;">

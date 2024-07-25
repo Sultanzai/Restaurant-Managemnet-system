@@ -8,6 +8,10 @@ use App\Models\BillDetail;
 
 class BillController extends Controller
 {
+    public function index(){
+        $bills = Bill::all();
+        return view('BillPage',compact('bills'));
+    }
     public function create()
     {
         return view('create_bill');
@@ -45,14 +49,14 @@ class BillController extends Controller
             $bill->billDetails()->create($detail);
         }
 
-        return redirect()->back()->with('success', 'Bill created successfully!');
+        return redirect()->route('BillPage')->with('success', 'Bill Created successfully');
     }
 
 
     public function edit($id)
     {
         $bill = Bill::with('billDetails')->findOrFail($id);
-        return view('edit_bill', compact('bill'));
+        return view('UpdateBill', compact('bill'));
     }
 
     public function update(Request $request, $id)
@@ -94,5 +98,14 @@ class BillController extends Controller
         }
 
         return redirect()->back()->with('success', 'Bill updated successfully!');
+    }
+    
+    
+    // 
+    public function destroy($id)
+    {
+        $bills = Bill::findOrFail($id);
+        $bills->delete();
+        return redirect()->route('BillPage')->with('success', 'Bill deleted successfully');
     }
 }
