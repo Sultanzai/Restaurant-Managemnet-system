@@ -9,6 +9,8 @@ use App\Models\Expenses;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BillController;
+
 
 // Login Routes ==========================
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
@@ -106,4 +108,18 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [ReportController::class, 'DashboardReport'])->name('dashboard');
+
+
+
+    // Bill Pages  ==============================================================
+    Route::get('/BillPage', [ExpensesController::class, 'index'])->name('BillPage');
+
+    Route::get('/create_bill', [BillController::class, 'create'])->name('bills.create');
+    Route::post('/create_bill', [BillController::class, 'store'])->name('bills.store');
+    Route::get('/bills/{id}/edit', [BillController::class, 'edit'])->name('bills.edit');
+    Route::post('/bills/{id}', [BillController::class, 'update'])->name('bills.update');
+
+
+
+
 });

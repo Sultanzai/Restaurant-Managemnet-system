@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,12 +53,26 @@
             background-color: #e0e0e0;
         }
         .btn-print {
-            float: right;
+            float: left;
+        }
+        .btn{
+            float: left;
+            margin: 10px;
         }
         .form-group {
             margin-bottom: 15px;
             width: 300px;
             padding: 10px;
+        }
+        #filter-form {
+            float: left;
+            width: auto; /* Adjust the width as needed */
+            margin-right: 20px; /* Add some space to the right if needed */
+        }
+        .container::after {
+            content: "";
+            display: table;
+            clear: both;
         }
         .form-group label {
             display: block;
@@ -116,34 +130,39 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Menu</th>
-                    <th>Unit</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Description</th>
-                    <th>Date</th>
+                    <th>شناسه</th>
+                    <th>نام</th>
+                    <th>منو</th>
+                    <th>واحد</th>
+                    <th>قیمت</th>
+                    <th>وضعیت</th>
+                    <th>توضیحات</th>
+                    <th>تاریخ</th>
                 </tr>
             </thead>
             <tbody id="expense-table-body">
-                @foreach($orderDetails as $order)
+                @foreach($orderData as $order)
                 <tr>
-                    <td>{{ $order->order_id }}</td>
-                    <td>{{ $order->O_Name }}</td>
-                    <td>{{ $order->m_Name }}</td>
-                    <td>{{ $order->OD_Units }}</td>
-                    <td>{{ $order->OD_Price }}</td>
-                    <td>{{ $order->O_Status }}</td>
-                    <td>{{ $order->O_Description }}</td>
-                    <td>{{ $order->created_at }}</td>
+                    <td>{{ $order['Order_ID'] }}</td>
+                    <td>{{ $order['O_Name'] }}</td>
+                    <td>{{ $order['Menu_Names'] }}</td>
+                    <td>{{ $order['OD_Units'] }}</td>
+                    <td>{{ $order['Total_Menu_Price'] }}</td>
+                    <td>{{ $order['O_Status'] }}</td>
+                    <td>{{ $order['O_Description'] }}</td>
+                    <td>{{ $order['created_at'] }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        <h3>Total Amount: <span id="total-amount">{{ $totalAmount }}</span></h3>
+        <div>
+        <h3 style="float: left;">Total Amount: <span id="total-amount">{{ $totalAmount }}</span></h3>
+        </div>         
+        <div>
+            {{-- Fix the  design error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --}}
         <a href="javascript:window.print()" class="btn btn-print">Print</a>
         <a href="{{ route('OrderPage') }}" class="btn btn-back">Back</a>
+        </div>
     </div>
 
     <script>

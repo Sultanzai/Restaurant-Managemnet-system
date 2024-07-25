@@ -133,15 +133,45 @@ class OrderController extends Controller
     // Order Report ======================================================================
     public function Report()
     {
-        $orderDetails = DB::table('order_receipt_view')
-            ->get();
+        // $orderDetails = DB::table('order_receipt_view')
+        //     ->get();
             
-            if ($orderDetails->isEmpty()) {
-                return redirect()->back()->with('error', 'Order not found.');
-            }
+        //     if ($orderDetails->isEmpty()) {
+        //         return redirect()->back()->with('error', 'Order not found.');
+        //     }
 
-        $totalAmount = $orderDetails->sum('OD_Price'); // Total amount 
-        return view('OrderReport', compact('orderDetails', 'totalAmount'));
+        // $totalAmount = $orderDetails->sum('OD_Price'); // Total amount 
+        // return view('OrderReport', compact('orderDetails', 'totalAmount'));
+
+        
+        $orders = Order::with('orderDetails.menu')->orderBy('id', 'desc')->get();
+
+        $orderData = $orders->map(function ($order) {
+            $totalMenuPrice = $order->orderDetails->sum(function ($orderDetail) {
+                return $orderDetail->menu->m_Price * $orderDetail->OD_Units;
+            });
+            $menuNames = $order->orderDetails->pluck('menu.m_Name')->unique()->implode(', ');
+            $odUnits = $order->orderDetails->sum('OD_Units');
+            $odPrices = $order->orderDetails->sum('OD_Price');
+    
+            return [
+                'Order_ID' => $order->id,
+                'O_Name' => $order->O_Name,
+                'O_Status' => $order->O_Status,
+                'O_Description' => $order->O_Description,
+                'Menu_Names' => $menuNames,
+                'OD_Units' => $odUnits,
+                'OD_Prices' => $odPrices,
+                'Total_Menu_Price' => $totalMenuPrice,
+                'Menu_Category' => $order->orderDetails->first()->menu->m_category ?? '',
+                'created_at' => $order->created_at->format('Y-m-d')
+            ];
+        });
+    
+        $totalAmount = $orderData->sum('Total_Menu_Price');
+    
+        return view('OrderReport', compact('orderData', 'totalAmount'));
+        
     }
 
     

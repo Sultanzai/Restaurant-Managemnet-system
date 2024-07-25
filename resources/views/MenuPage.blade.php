@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>داشبورد مدیریت رستوران</title>
+        <title>7 Eleven Restaurant System</title>
     
         <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.min.css') }}">
@@ -30,11 +30,11 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route('OrderPage') }}">Orders</a></li>
-                <li><a href="{{ route('MenuPage') }}">Menus</a></li>
-                <li><a href="{{ route('StoragePage') }}">Storage</a></li>
-                <li><a href="{{ route('ExpensesPage') }}">Expenses</a></li>
+                <li><a href="{{ route('dashboard') }}">داشبورد</a></li>
+                <li><a href="{{ route('OrderPage') }}">سفارشات</a></li>
+                <li><a href="{{ route('MenuPage') }}">منوها</a></li>
+                <li><a href="{{ route('StoragePage') }}">ذخیره مواد غذایی</a></li>
+                <li><a href="{{ route('ExpensesPage') }}">مصارف</a></li>
             </ul>
         </nav>
 
@@ -65,10 +65,10 @@
                         <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Food Name</th>
-                                    <th>Price</th>
-                                    <th>Category</th>
-                                    <th>Delete</th>
+                                    <th>نام غذا</th>
+                                    <th>قیمت</th>
+                                    <th>دسته بندی</th>
+                                    <th>حذف</th>
                                 </tr>
                             </thead>
                             <tbody>

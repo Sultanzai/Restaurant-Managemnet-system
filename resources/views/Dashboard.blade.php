@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>داشبورد مدیریت رستوران</title>
+    <title>7 Eleven Restaurant System</title>
 
     <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('BootstrapCSS/bootstrap.min.css') }}">
@@ -28,11 +28,12 @@
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route('OrderPage') }}">Orders</a></li>
-                <li><a href="{{ route('MenuPage') }}">Menus</a></li>
-                <li><a href="{{ route('StoragePage') }}">Storage</a></li>
-                <li><a href="{{ route('ExpensesPage') }}">Expenses</a></li>
+                <li><a href="{{ route('dashboard') }}">داشبورد</a></li>
+                <li><a href="{{ route('OrderPage') }}">سفارشات</a></li>
+                <li><a href="{{ route('MenuPage') }}">منوها</a></li>
+                <li><a href="{{ route('StoragePage') }}">ذخیره مواد غذایی</a></li>
+                <li><a href="{{ route('ExpensesPage') }}">مصارف</a></li>
+                <li><a href="{{ route('BillPage') }}">Bills</a></li>
             </ul>
         </nav>
         <!-- Main Content -->
@@ -89,13 +90,13 @@
                     <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Total In</th>
-                                <th>Total Out</th>
-                                <th>Total Expired</th>
-                                <th>Remaining</th>
-                                <th>Date</th>
+                                <th>آیدی</th>
+                                <th>نام</th>
+                                <th>مجموع درج شده</th>
+                                <th>مجموع خارج شده</th>
+                                <th>مجموع منقضی شده</th>
+                                <th>باقی مانده</th>
+                                <th>تاریخ</th>
                             </tr>
                         </thead>
                         <tbody>
