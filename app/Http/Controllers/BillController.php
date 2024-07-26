@@ -100,6 +100,15 @@ class BillController extends Controller
         return redirect()->back()->with('success', 'Bill updated successfully!');
     }
     
+    // Print Order ======================================================================
+    public function show($id)
+    {
+        $bill = Bill::findOrFail($id);
+
+        $billdetail = BillDetail::where('Bill_ID', $id)->get();
+
+        return view('PrintBill', compact('bill', 'billdetail'));
+    }
     
     // 
     public function destroy($id)

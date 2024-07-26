@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +22,7 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
+            font-size: 18px;
         }
         .form-group input {
             width: 100%;
@@ -31,13 +32,13 @@
         .form-group button {
             padding: 10px 20px;
             cursor: pointer;
-            background-color: #28a745;
+            background-color: #1e1e1e;
             color: #fff;
             border: none;
             border-radius: 5px;
         }
         .form-group button:hover {
-            background-color: #218838;
+            background-color: #353535;
         }
         .bill-details {
             margin-bottom: 20px;
@@ -49,11 +50,13 @@
         }
         .bill-details .bill-detail input {
             flex: 1;
+            font-size: 18px;
+            height: 22px;
         }
         .add-detail {
             margin-top: 10px;
             cursor: pointer;
-            color: #007bff;
+            color: #3d3d3d;
         }
         .add-detail:hover {
             text-decoration: underline;
@@ -66,30 +69,30 @@
 </head>
 <body>
     <div class="container">
-        <h1>Edit Bill</h1>
+        <h1>ایدت بیل</h1>
         @if(session('success'))
             <div style="color: green;">{{ session('success') }}</div>
         @endif
         <form action="{{ route('bills.update', $bill->id) }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="B_Number">Bill Number</label>
+                <label for="B_Number">بیل نمبر</label>
                 <input type="text" name="B_Number" id="B_Number" value="{{ $bill->B_Number }}" required>
             </div>
             <div class="form-group">
-                <label for="B_Name">Bill Name</label>
+                <label for="B_Name">نام فروشنده</label>
                 <input type="text" name="B_Name" id="B_Name" value="{{ $bill->B_Name }}" required>
             </div>
             <div class="form-group">
-                <label for="B_Paid">Bill Paid</label>
+                <label for="B_Paid">قیمت پرداخت شده</label>
                 <input type="number" step="0.01" name="B_Paid" id="B_Paid" value="{{ $bill->B_Paid }}" required>
             </div>
             <div class="form-group">
-                <label for="B_Description">Bill Description</label>
+                <label for="B_Description">جزیات</label>
                 <input type="text" name="B_Description" id="B_Description" value="{{ $bill->B_Description }}">
             </div>
             <div class="bill-details" id="bill-details">
-                <h3>Bill Details</h3>
+                <h2>خریداری ها</h2>
                 @foreach($bill->billDetails as $index => $detail)
                     <div class="bill-detail">
                         <input type="text" name="bill_details[{{ $index }}][BD_Name]" placeholder="Name" value="{{ $detail->BD_Name }}" required>
@@ -100,7 +103,7 @@
             </div>
             <div class="add-detail" onclick="addBillDetail()">+ Add Detail</div>
             <div class="total">
-                <label for="B_Total">Bill Total: </label>
+                <label for="B_Total">مجموعه بیل: </label>
                 <span id="B_Total">{{ $bill->B_Total }}</span>
             </div>
             <div class="form-group">

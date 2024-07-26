@@ -125,8 +125,8 @@
             $('#example').DataTable();
         });
 
-        function viewOrder(orderId) {
-        window.location.href = '/PrintOrder/' + orderId;
+        function viewOrder(bill) {
+        window.location.href = '/PrintBill/' + bill;
         }
     </script>
 </body>
