@@ -11,6 +11,7 @@
             color: #000000;
             margin: 0;
             padding: 0;
+            font-size: 20px;
         }
         .container {
             width: 90%;
@@ -31,7 +32,7 @@
         }
         th, td {
             padding: 10px;
-            text-align: left;
+            text-align: right;
         }
         th {
             background-color: #f0f0f0;
@@ -82,6 +83,7 @@
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
+            font-size: 20px;
         }
         .set{
             display: flex;

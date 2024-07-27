@@ -7,6 +7,10 @@ use App\Models\OrderDetail;
 use App\Models\OrderDetailsView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Log;
+use Auth;
+
+
 class OrderController extends Controller
 {
     public function index()
@@ -105,9 +109,20 @@ class OrderController extends Controller
             'O_Description' => $request->O_Description,
         ]);
 
+         // Log the current details before deleting
+        foreach ($order->orderDetails as $detail) {
+            Log::create([
+                'username' => Auth::user()->name,
+                'state' => 'update (Item before)',
+                'item_name' => $detail->menu->m_Name,
+                'item_id' => $detail->id,
+                'price' => $detail->OD_Price,
+            ]);
+        }
+
         // Delete existing order details
         OrderDetail::where('Order_ID', $id)->delete();
-
+        
         // Add updated order details
         foreach ($request->items as $item) {
             OrderDetail::create([
@@ -116,6 +131,16 @@ class OrderController extends Controller
                 'OD_Units' => $item['OD_Units'],
                 'OD_Price' => $item['OD_Price'],
             ]);
+
+                    // Log the new details after update
+            Log::create([
+                'username' => Auth::user()->name,
+                'state' => 'update (Item after ID: )',
+                'item_name' => $item['Menu_ID'],
+                'item_id' => $item['Menu_ID'],
+                'price' => $item['OD_Units'] * $item['OD_Price'],
+            ]);
+
         }
 
         return redirect()->route('OrderPage', $order);
@@ -125,6 +150,18 @@ class OrderController extends Controller
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
+
+        foreach ($order->orderDetails as $detail) {
+            Log::create([
+                'username' => Auth::user()->name,
+                'state' => 'delete',
+                'item_name' => $detail->menu->m_Name,
+                'item_id' => $detail->id,
+                'price' => $detail->OD_Price,
+            ]);
+        }
+
+
         $order->delete();
         return redirect()->route('OrderPage')->with('success', 'Expense deleted successfully');
     }
@@ -133,16 +170,6 @@ class OrderController extends Controller
     // Order Report ======================================================================
     public function Report()
     {
-        // $orderDetails = DB::table('order_receipt_view')
-        //     ->get();
-            
-        //     if ($orderDetails->isEmpty()) {
-        //         return redirect()->back()->with('error', 'Order not found.');
-        //     }
-
-        // $totalAmount = $orderDetails->sum('OD_Price'); // Total amount 
-        // return view('OrderReport', compact('orderDetails', 'totalAmount'));
-
         
         $orders = Order::with('orderDetails.menu')->orderBy('id', 'desc')->get();
 
