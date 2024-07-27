@@ -31,6 +31,7 @@
             justify-content: space-between;
             margin-bottom: 25px;
             border-bottom: solid 1px #000;
+            padding: 5px;
         }
         input[type="text"], input[type="number"] {
             width: 100%;
@@ -85,11 +86,8 @@
             </div>
             
             <div class="bill-data-item">
-                <label for="bill-number">پرداخت: {{ $bill->B_Paid }}</label>
                 <label for="details">جزعات: {{ $bill->B_Description }}</label>
-            </div>
-           
-            <div class="bill-data-item">
+                <label for="bill-number">پرداخت: {{ $bill->B_Paid }}</label>
             </div>
 
             <h3>خریداری ها</h3>

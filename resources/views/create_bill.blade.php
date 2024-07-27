@@ -47,11 +47,23 @@
             display: flex;
             gap: 10px;
             margin-bottom: 10px;
+            align-items: center;
         }
         .bill-details .bill-detail input {
             flex: 1;
             font-size: 18px;
             height: 22px;
+        }
+        .bill-details .bill-detail button {
+            padding: 6px 10px;
+            cursor: pointer;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        .bill-details .bill-detail button:hover {
+            background-color: #ff1a1a;
         }
         .add-detail {
             margin-top: 10px;
@@ -97,6 +109,7 @@
                     <input type="text" name="bill_details[0][BD_Name]" placeholder="Name" required>
                     <input type="number" step="0.01" name="bill_details[0][BD_Price]" placeholder="Price" required oninput="calculateTotal()">
                     <input type="number" name="bill_details[0][BD_Unit]" placeholder="Unit" required oninput="calculateTotal()">
+                    <button type="button" onclick="deleteBillDetail(this)">Delete</button>
                 </div>
             </div>
             <div class="add-detail" onclick="addBillDetail()">+ Add More</div>
@@ -121,9 +134,16 @@
                 <input type="text" name="bill_details[${detailIndex}][BD_Name]" placeholder="Name" required>
                 <input type="number" step="0.01" name="bill_details[${detailIndex}][BD_Price]" placeholder="Price" required oninput="calculateTotal()">
                 <input type="number" name="bill_details[${detailIndex}][BD_Unit]" placeholder="Unit" required oninput="calculateTotal()">
+                <button type="button" onclick="deleteBillDetail(this)">Delete</button>
             `;
             billDetails.appendChild(newDetail);
             detailIndex++;
+        }
+
+        function deleteBillDetail(button) {
+            const billDetail = button.parentElement;
+            billDetail.remove();
+            calculateTotal();
         }
 
         function calculateTotal() {

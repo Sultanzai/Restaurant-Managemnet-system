@@ -35,6 +35,7 @@
                 <li><a href="{{ route('MenuPage') }}">منوها</a></li>
                 <li><a href="{{ route('StoragePage') }}">ذخیره مواد غذایی</a></li>
                 <li><a href="{{ route('ExpensesPage') }}">مصارف</a></li>
+                <li><a href="{{ route('BillPage') }}">بیل ها</a></li>
             </ul>
         </nav>
 

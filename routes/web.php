@@ -117,7 +117,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/create_bill', [BillController::class, 'create'])->name('bills.create');
     Route::post('/create_bill', [BillController::class, 'store'])->name('bills.store');
     Route::get('/UpdateBill/{id}/edit', [BillController::class, 'edit'])->name('bills.edit');
-    Route::post('/UpdateBill/{id}', [BillController::class, 'update'])->name('bills.update');
+    Route::put('/UpdateBill/{id}', [BillController::class, 'update'])->name('bills.update');
     Route::delete('/BillPage/{id}', [BillController::class, 'destroy'])->name('BillPage.destroy');
     
     // Print Bill Page

@@ -97,7 +97,7 @@ class BillController extends Controller
             $bill->billDetails()->create($detail);
         }
 
-        return redirect()->back()->with('success', 'Bill updated successfully!');
+        return redirect()->route('BillPage')->with('success', 'Bill Updated successfully');
     }
     
     // Print Order ======================================================================

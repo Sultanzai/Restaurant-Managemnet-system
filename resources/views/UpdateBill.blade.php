@@ -47,11 +47,23 @@
             display: flex;
             gap: 10px;
             margin-bottom: 10px;
+            align-items: center;
         }
         .bill-details .bill-detail input {
             flex: 1;
             font-size: 18px;
             height: 22px;
+        }
+        .bill-details .bill-detail button {
+            padding: 6px 10px;
+            cursor: pointer;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        .bill-details .bill-detail button:hover {
+            background-color: #ff1a1a;
         }
         .add-detail {
             margin-top: 10px;
@@ -75,6 +87,7 @@
         @endif
         <form action="{{ route('bills.update', $bill->id) }}" method="POST">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="B_Number">بیل نمبر</label>
                 <input type="text" name="B_Number" id="B_Number" value="{{ $bill->B_Number }}" required>
@@ -98,6 +111,7 @@
                         <input type="text" name="bill_details[{{ $index }}][BD_Name]" placeholder="Name" value="{{ $detail->BD_Name }}" required>
                         <input type="number" step="0.01" name="bill_details[{{ $index }}][BD_Price]" placeholder="Price" value="{{ $detail->BD_Price }}" required oninput="calculateTotal()">
                         <input type="number" name="bill_details[{{ $index }}][BD_Unit]" placeholder="Unit" value="{{ $detail->BD_Unit }}" required oninput="calculateTotal()">
+                        <button type="button" onclick="deleteBillDetail(this)">Delete</button>
                     </div>
                 @endforeach
             </div>
@@ -123,9 +137,16 @@
                 <input type="text" name="bill_details[${detailIndex}][BD_Name]" placeholder="Name" required>
                 <input type="number" step="0.01" name="bill_details[${detailIndex}][BD_Price]" placeholder="Price" required oninput="calculateTotal()">
                 <input type="number" name="bill_details[${detailIndex}][BD_Unit]" placeholder="Unit" required oninput="calculateTotal()">
+                <button type="button" onclick="deleteBillDetail(this)">Delete</button>
             `;
             billDetails.appendChild(newDetail);
             detailIndex++;
+        }
+
+        function deleteBillDetail(button) {
+            const billDetail = button.parentElement;
+            billDetail.remove();
+            calculateTotal();
         }
 
         function calculateTotal() {
