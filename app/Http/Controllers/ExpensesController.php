@@ -73,4 +73,10 @@ class ExpensesController extends Controller
         $expense->delete();
         return redirect()->route('ExpensesPage')->with('success', 'Expense deleted successfully');
     }
+
+    public function logs()
+    {
+        $log = log::all(); // Retrieve all expenses from the database
+        return view('log', compact('log')); // Pass the expenses to the view
+    }
  }

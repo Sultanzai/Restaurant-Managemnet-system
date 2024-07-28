@@ -123,7 +123,8 @@ Route::middleware('auth')->group(function () {
     // Print Bill Page
     Route::get('/PrintBill/{id}', [BillController::class, 'show'])->name('PrintBill');
 
-
+    // Log Route 
+    Route::get('/log', [ExpensesController::class, 'logs'])->name('log');
 
 
 });

@@ -82,6 +82,9 @@
                     <div class="card"><p>Daily: {{$dailystorage}}</p></div>
                 </div>
             </main>
+
+            <a href="{{ route('log') }}"><button class="btn" style="background-color: black; color:white;">Log Data</button></a><br><br>
+
             <div class="continer">
                 
                 <div class="row">
