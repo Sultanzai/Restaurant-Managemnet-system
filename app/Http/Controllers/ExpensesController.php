@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Expenses;
 use Illuminate\Http\Request;
-
+use App\Models\Log;
+use Auth;
 class ExpensesController extends Controller
 {
     public function index()
@@ -32,7 +33,13 @@ class ExpensesController extends Controller
         if (!$expense) {
             return redirect()->route('ExpensesPage')->with('error', 'Expense not found.');
         }
-
+        Log::create([
+            'username' => Auth::user()->name,
+            'state' => 'Expenses Before Update',
+            'item_name' => $expense->E_Name,
+            'item_id' => $expense->id,
+            'price' => $expense->E_Amount,
+        ]);
         $request->validate([
             'E_Name' => 'required|string|max:255',
             'E_Type' => 'required|string|max:255',
@@ -42,11 +49,27 @@ class ExpensesController extends Controller
 
         $expense->update($request->all());
 
+        Log::create([
+            'username' => Auth::user()->name,
+            'state' => 'Expenses After Update',
+            'item_name' => $expense->E_Name,
+            'item_id' => $expense->id,
+            'price' => $expense->E_Amount,
+        ]);
+
         return redirect()->route('ExpensesPage')->with('success', 'Expense updated successfully.');
     }
     public function destroy($id)
     {
         $expense = Expenses::findOrFail($id);
+
+            Log::create([
+                'username' => Auth::user()->name,
+                'state' => 'Expenses deleted',
+                'item_name' => $expense->E_Name,
+                'item_id' => $expense->id,
+                'price' => $expense->E_Amount,
+            ]);
         $expense->delete();
         return redirect()->route('ExpensesPage')->with('success', 'Expense deleted successfully');
     }

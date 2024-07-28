@@ -5,7 +5,10 @@ use App\Models\StorageView;
 use App\Models\StorageMainView;
 use App\Models\Storage;
 use App\Models\StorageDetail;
+use Carbon\Traits\ToStringFormat;
 use DB;
+use App\Models\Log;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -80,6 +83,15 @@ class StorageController extends Controller
     public function destroy($id)
     {
         $storageid = StorageDetail::findOrFail($id);
+
+        Log::create([
+            'username' => Auth::user()->name,
+            'state' => 'Storage deleted',
+            'item_name' => 'ID Number ' . $storageid->Storage_ID . ' is Deleted from Storage table',
+            'item_id' => $storageid->Storage_ID,
+            'price' => $storageid->S_Price * $storageid->S_Unit,
+        ]);
+
         $storageid->delete();
         return redirect('/StoragePage')->with('success','');
     }

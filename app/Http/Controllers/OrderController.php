@@ -113,7 +113,7 @@ class OrderController extends Controller
         foreach ($order->orderDetails as $detail) {
             Log::create([
                 'username' => Auth::user()->name,
-                'state' => 'update (Item before)',
+                'state' => 'Order Items Before Update',
                 'item_name' => $detail->menu->m_Name,
                 'item_id' => $detail->id,
                 'price' => $detail->OD_Price,
@@ -135,7 +135,7 @@ class OrderController extends Controller
                     // Log the new details after update
             Log::create([
                 'username' => Auth::user()->name,
-                'state' => 'update (Item after ID: )',
+                'state' => 'Order Items After Update',
                 'item_name' => $item['Menu_ID'],
                 'item_id' => $item['Menu_ID'],
                 'price' => $item['OD_Units'] * $item['OD_Price'],
@@ -154,7 +154,7 @@ class OrderController extends Controller
         foreach ($order->orderDetails as $detail) {
             Log::create([
                 'username' => Auth::user()->name,
-                'state' => 'delete',
+                'state' => 'Order Item deleted',
                 'item_name' => $detail->menu->m_Name,
                 'item_id' => $detail->id,
                 'price' => $detail->OD_Price,
