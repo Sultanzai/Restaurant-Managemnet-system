@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
         }
         th, td {
             padding: 10px;
-            text-align: left;
+            text-align: right;
         }
         th {
             background-color: #f0f0f0;
@@ -73,7 +73,7 @@
             display: flex;
             align-items: space;
             width: 100%;
-            text-align: left;
+            text-align: right;
         }
         @media print {
             .btn, .btn-back, .form-group {
@@ -88,11 +88,11 @@
         <form id="filter-form">
             <div class="set">
                 <div class="form-group">
-                    <label for="search">Search:</label>
+                    <label for="search">جستجو:</label>
                     <input type="text" id="search" name="search">
                 </div>
                 <div class="form-group">
-                    <label for="expense_type">Expense Type:</label>
+                    <label for="expense_type">نوع مصارف:</label>
                     <select id="expense_type" name="expense_type">
                         <option value="">All</option>
                         <option value="رستوران">رستوران</option>
@@ -105,12 +105,12 @@
             </div>
             <div class="set">
                 <div class="form-group">
-                    <label for="start_date">Start Date:</label>
-                    <input type="date" id="start_date" name="start_date">
+                    <label for="start_date">شروع تاریخ:</label>
+                    <input type="text" id="start_date" name="start_date">
                 </div>
                 <div class="form-group">
-                    <label for="end_date">End Date:</label>
-                    <input type="date" id="end_date" name="end_date">
+                    <label for="end_date">ختم تاریخ:</label>
+                    <input type="text" id="end_date" name="end_date">
                 </div>
             </div>
 
@@ -119,23 +119,23 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Created At</th>
+                    <th>آیدی</th>
+                    <th>نام</th>
+                    <th>نوع</th>
+                    <th>معلومات</th>
+                    <th>مجمومعه</th>
+                    <th>تاریخ</th>
                 </tr>
             </thead>
             <tbody id="expense-table-body">
-                @foreach($expenses as $expense)
+                @foreach($expensesData as $expense)
                 <tr>
-                    <td>{{ $expense->id }}</td>
-                    <td>{{ $expense->E_Name }}</td>
-                    <td>{{ $expense->E_Type }}</td>
-                    <td>{{ $expense->E_Description }}</td>
-                    <td>{{ $expense->E_Amount }}</td>
-                    <td>{{ $expense->created_at }}</td>
+                    <td>{{ $expense['id'] }}</td>
+                    <td>{{ $expense['E_Name'] }}</td>
+                    <td>{{ $expense['E_Type'] }}</td>
+                    <td>{{ $expense['E_Description'] }}</td>
+                    <td>{{ $expense['E_Amount'] }}</td>
+                    <td>{{ $expense['created_at'] }}</td>
                 </tr>
                 @endforeach
             </tbody>

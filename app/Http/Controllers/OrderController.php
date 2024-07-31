@@ -219,16 +219,4 @@ class OrderController extends Controller
         return view('PrintOrder', compact('orderDetails'));
     }
 
-
-
-
-
-    // Testing
-    // public function convertDate()
-    // {
-    //     $gregorianDate = '2024/7/31';
-    //     $jalaliDate = Jalalian::fromCarbon(\Carbon\Carbon::parse($gregorianDate))->format('Y/m/d');
-        
-    //     return view('testing', ['gregorianDate' => $gregorianDate, 'jalaliDate' => $jalaliDate]);
-    // }
 }

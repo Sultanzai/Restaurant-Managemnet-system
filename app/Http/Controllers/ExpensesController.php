@@ -5,6 +5,8 @@ use App\Models\Expenses;
 use Illuminate\Http\Request;
 use App\Models\Log;
 use Auth;
+use Morilog\Jalali\Jalalian;
+
 class ExpensesController extends Controller
 {
     public function index()
@@ -12,11 +14,26 @@ class ExpensesController extends Controller
         $expenses = Expenses::all(); // Retrieve all expenses from the database
         return view('ExpensesPage', compact('expenses')); // Pass the expenses to the view
     }
-    public function Report()
+    public function report()
     {
         $expenses = Expenses::all(); // Retrieve all expenses from the database
-        $totalAmount = $expenses->sum('E_Amount'); // Total amount 
-        return view('ExpensesReport', compact('expenses','totalAmount')); // Pass the expenses to the view
+
+        $expensesData = $expenses->map(function ($expense) {
+            // Convert created_at to Hijri Shamsi date
+            $hijriDate = Jalalian::fromCarbon($expense->created_at)->format('Y/m/d');
+
+            return [
+                'id' => $expense->id,
+                'E_Name' => $expense->E_Name,
+                'E_Type' => $expense->E_Type,
+                'E_Description' => $expense->E_Description,
+                'E_Amount' => $expense->E_Amount,
+                'created_at' => $hijriDate // Use the Hijri Shamsi date here
+            ];
+        });
+
+        $totalAmount = $expensesData->sum('E_Amount'); // Total amount 
+        return view('ExpensesReport', compact('expensesData', 'totalAmount')); // Pass the expenses to the view
     }
     public function edit($id)
     {
