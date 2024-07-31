@@ -54,19 +54,19 @@
             background-color: #e0e0e0;
         }
         .btn-print {
-            float: left;
+            float: right;
         }
         .btn{
-            float: left;
+            float: right;
             margin: 10px;
         }
         .form-group {
             margin-bottom: 15px;
-            width: 300px;
+            width: 100%;
             padding: 10px;
         }
         #filter-form {
-            float: left;
+            float: right;
             width: auto; /* Adjust the width as needed */
             margin-right: 20px; /* Add some space to the right if needed */
         }
@@ -89,7 +89,7 @@
             display: flex;
             align-items: space;
             width: 100%;
-            text-align: left;
+            text-align: right;
         }
         @media print {
             .btn, .btn-back, .form-group {
@@ -104,11 +104,11 @@
         <form id="filter-form">
             <div class="set">
                 <div class="form-group">
-                    <label for="search">Search:</label>
+                    <label for="search">جستجو:</label>
                     <input type="text" id="search" name="search">
                 </div>
                 <div class="form-group">
-                    <label for="Paymment_type">Payment Type:</label>
+                    <label for="Paymment_type">نوع پرداخت ها:</label>
                     <select id="Paymment_type" name="Paymment_type">
                         <option value="">All</option>
                         <option value="Paid">Paid</option>
@@ -118,12 +118,12 @@
             </div>
             <div class="set">
                 <div class="form-group">
-                    <label for="start_date">Start Date:</label>
-                    <input type="date" id="start_date" name="start_date">
+                    <label for="start_date">شروع تاریخ:</label>
+                    <input type="text" id="start_date" name="start_date">
                 </div>
                 <div class="form-group">
-                    <label for="end_date">End Date:</label>
-                    <input type="date" id="end_date" name="end_date">
+                    <label for="end_date">ختم تاریخ:</label>
+                    <input type="text" id="end_date" name="end_date">
                 </div>
             </div>
 

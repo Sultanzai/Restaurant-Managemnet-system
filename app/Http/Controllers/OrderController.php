@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Log;
 use Auth;
+use Morilog\Jalali\Jalalian;
 
 
 class OrderController extends Controller
@@ -181,6 +182,9 @@ class OrderController extends Controller
             $odUnits = $order->orderDetails->sum('OD_Units');
             $odPrices = $order->orderDetails->sum('OD_Price');
     
+            // Convert created_at to Hijri Shamsi date
+            $hijriDate = Jalalian::fromCarbon($order->created_at)->format('Y/m/d');
+
             return [
                 'Order_ID' => $order->id,
                 'O_Name' => $order->O_Name,
@@ -191,14 +195,13 @@ class OrderController extends Controller
                 'OD_Prices' => $odPrices,
                 'Total_Menu_Price' => $totalMenuPrice,
                 'Menu_Category' => $order->orderDetails->first()->menu->m_category ?? '',
-                'created_at' => $order->created_at->format('Y-m-d')
+                'created_at' => $hijriDate // Use the Hijri Shamsi date here
             ];
         });
     
         $totalAmount = $orderData->sum('Total_Menu_Price');
     
-        return view('OrderReport', compact('orderData', 'totalAmount'));
-        
+        return view('OrderReport', compact('orderData', 'totalAmount'));        
     }
 
     
@@ -215,4 +218,17 @@ class OrderController extends Controller
 
         return view('PrintOrder', compact('orderDetails'));
     }
+
+
+
+
+
+    // Testing
+    // public function convertDate()
+    // {
+    //     $gregorianDate = '2024/7/31';
+    //     $jalaliDate = Jalalian::fromCarbon(\Carbon\Carbon::parse($gregorianDate))->format('Y/m/d');
+        
+    //     return view('testing', ['gregorianDate' => $gregorianDate, 'jalaliDate' => $jalaliDate]);
+    // }
 }
