@@ -83,25 +83,24 @@
                                 <th>تاریخ</th>
                                 <th>چاپ</th>
                                 <th>اپدیت</th>
-                                <th>حذف</th>                                
+                                <th>حذف</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bills as $bill)
+                            @foreach ($billsData as $bill)
                                 <tr>
-                                    <td>{{$bill->id}}</td>
-                                    <td>{{$bill->B_Number}}</td>
-                                    <td>{{$bill->B_Name}}</td>
-                                    <td>{{$bill->B_Total}}</td>
-                                    <td>{{$bill->B_Paid}}</td>
-                                    <td>{{$bill->B_Total - $bill->B_Paid}}</td>
-                                    <td>{{$bill->B_Description}}</td>
-                                    <td>{{$bill->created_at->format('Y-m-d')}}</td>
-                                    
-                                    <td><i class="fa fa-print" style="font-size:20px; margin-right:20px;" onclick="viewOrder({{ $bill->id }})"></i></td>
-                                    <td><a href="{{ route('bills.edit', $bill->id) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
+                                    <td>{{ $bill['id'] }}</td>
+                                    <td>{{ $bill['B_Number'] }}</td>
+                                    <td>{{ $bill['B_Name'] }}</td>
+                                    <td>{{ $bill['B_Total'] }}</td>
+                                    <td>{{ $bill['B_Paid'] }}</td>
+                                    <td>{{ $bill['B_Total'] - $bill['B_Paid'] }}</td>
+                                    <td>{{ $bill['B_Description'] }}</td>
+                                    <td>{{ $bill['created_at'] }}</td>
+                                    <td><i class="fa fa-print" style="font-size:20px; margin-right:20px;" onclick="viewOrder({{ $bill['id'] }})"></i></td>
+                                    <td><a href="{{ route('bills.edit', $bill['id']) }}"><i class="fa fa-edit" style="font-size:20px; margin-right:20px;"></i></a></td>
                                     <td>
-                                        <form id="delete-form-{{ $bill->id }}" action="{{ route('BillPage.destroy', $bill->id) }}" method="POST" style="display:inline;">
+                                        <form id="delete-form-{{ $bill['id'] }}" action="{{ route('BillPage.destroy', $bill['id']) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" style="background:none; border:none; color:red;">

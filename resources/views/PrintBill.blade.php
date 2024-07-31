@@ -6,6 +6,7 @@
         body {
             font-family: Arial, sans-serif;
             direction: rtl;
+            font-weight: 400;
         }
         .bill-container {
             width: 40%;
@@ -26,7 +27,6 @@
         }
         .bill-item, .bill-data-item {
             font-size: 22px;
-            font-weight: 600;
             display: flex;
             justify-content: space-between;
             margin-bottom: 25px;
@@ -76,7 +76,7 @@
         <div class="bill-body">
             <div class="bill-data-item">
                 <label for="bill-number">نمبر: {{ $bill->B_Number }}</label>
-                <label for="date">تاریخ: {{ $bill->created_at->format('Y-m-d') }}</label>
+                <label for="date">تاریخ: {{ $hijriDate }}</label>
             </div>
            
             <div class="bill-data-item">

@@ -8,12 +8,30 @@ use App\Models\BillDetail;
 use Illuminate\Support\Facades\DB;
 use App\Models\Log;
 use Auth;
+use Morilog\Jalali\Jalalian;
 
 class BillController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $bills = Bill::all();
-        return view('BillPage',compact('bills'));
+
+        $billsData = $bills->map(function ($bill) {
+            // Convert created_at to Hijri Shamsi date
+            $hijriDate = Jalalian::fromCarbon($bill->created_at)->format('Y/m/d');
+
+            return [
+                'id' => $bill->id,
+                'B_Number' => $bill->B_Number,
+                'B_Name' => $bill->B_Name,
+                'B_Total' => $bill->B_Total,
+                'B_Paid' => $bill->B_Paid,
+                'B_Description' => $bill->B_Description,
+                'created_at' => $hijriDate // Use the Hijri Shamsi date here
+            ];
+        });
+
+        return view('BillPage', compact('billsData'));
     }
     public function create()
     {
@@ -126,12 +144,15 @@ class BillController extends Controller
     {
         $bill = Bill::findOrFail($id);
 
+        // Convert created_at to Hijri Shamsi date
+        $hijriDate = Jalalian::fromCarbon($bill->created_at)->format('Y/m/d');
+
         $billdetail = BillDetail::where('Bill_ID', $id)->get();
 
-        return view('PrintBill', compact('bill', 'billdetail'));
+        return view('PrintBill', compact('bill', 'billdetail', 'hijriDate'));
     }
     
-    // 
+    // Delete Function
     public function destroy($id)
     {
         $bills = Bill::findOrFail($id);
