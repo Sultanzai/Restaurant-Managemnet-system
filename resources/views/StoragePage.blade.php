@@ -93,14 +93,14 @@
                         <table id="example" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Unit</th>
-                                    <th>Type</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                    <th>Delete</th>
+                                    <th>آیدی</th>
+                                    <th>نام</th>
+                                    <th>تعداد</th>
+                                    <th>نوع</th>
+                                    <th>قیمت</th>
+                                    <th>حالت</th>
+                                    {{-- <th>Date</th> --}}
+                                    <th>حذف</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -120,7 +120,7 @@
                                     <td>{{ $store->S_Type }}</td>
                                     <td>{{ $store->S_Price }}</td>
                                     <td style='color:{{$color}}'>{{ $store->S_Status}}</td>
-                                    <td>{{ $store->created_at}}</td>
+                                    {{-- <td>{{ $store->created_at}}</td> --}}
                                     <td>
                                         <form id="delete-form-{{ $store->id }}" action="{{ route('StoragePage.destroy', $store->id) }}" method="POST" style="display:inline;">
                                             @csrf

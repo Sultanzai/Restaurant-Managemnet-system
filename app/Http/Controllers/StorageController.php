@@ -9,6 +9,8 @@ use Carbon\Traits\ToStringFormat;
 use DB;
 use App\Models\Log;
 use Auth;
+use Morilog\Jalali\Jalalian;
+
 
 use Illuminate\Http\Request;
 
@@ -17,6 +19,7 @@ class StorageController extends Controller
     public function index()
     {
         $storage = StorageView::all(); // Retrieve all  from the database
+         // Convert created_at to Hijri Shamsi date
         return view('StoragePage', compact('storage')); // Pass the to the view
     }
     public function showItems()
@@ -99,15 +102,29 @@ class StorageController extends Controller
     // Storage Report ======================================================================
     public function Report()
     {
-        $storage = DB::table('storage_view')
-            ->get();
-            
+            $storage = DB::table('storage_view')->get();
+    
             if ($storage->isEmpty()) {
                 return redirect()->back()->with('error', 'Order not found.');
             }
-
-        $totalAmount = $storage->sum('S_Price'); // Total amount 
-        return view('StorageReport', compact('storage', 'totalAmount'));
+    
+            $storageData = $storage->map(function ($item) {
+                // Convert created_at to Hijri Shamsi date
+                $hijriDate = Jalalian::fromCarbon(\Carbon\Carbon::parse($item->created_at))->format('Y/m/d');
+    
+                return [
+                    'storage_id' => $item->storage_id,
+                    's_Name' => $item->s_Name,
+                    'S_Type' => $item->S_Type,
+                    'S_Unit' => $item->S_Unit,
+                    'S_Price' => $item->S_Price,
+                    'S_Status' => $item->S_Status,
+                    'created_at' => $hijriDate // Use the Hijri Shamsi date here
+                ];
+            });
+    
+            $totalAmount = $storageData->sum('S_Price'); // Total amount 
+            return view('StorageReport', compact('storageData', 'totalAmount'));
     }
 
     // Displaying storage data in Dashboard 
