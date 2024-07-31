@@ -31,7 +31,7 @@ class StorageController extends Controller
     public function AddItems(Request $request)
     {
         $request->validate([
-            'unit' => 'integer',
+            'unit' => 'numeric',
             'price' => 'nullable|numeric',
             'type' => 'nullable|max:255',
             'status' => 'string|max:255',
@@ -55,11 +55,11 @@ class StorageController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'unit' => 'integer',
-            'price' => 'integer',
-            'type' => 'string|max:255',
-            'status' => 'string|max:255',
-            ]);
+            'unit' => 'numeric',  // Use numeric for floating number validation
+            'price' => 'nullable|numeric', // Use numeric for floating number validation
+            'type' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
+        ]);
 
         $storage = Storage::create([
             's_Name' => $request->name
