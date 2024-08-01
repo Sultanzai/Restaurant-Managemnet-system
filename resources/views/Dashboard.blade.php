@@ -55,31 +55,31 @@
                 <h4>Sales</h4>
                 <div class="dashboard-cards">
 
-                    <div class="card"><p>Total Sales: {{$totalsales}}</p></div>
-                    <div class="card"><p>Monthly Sales: {{$monthlysales}}</p></div>
-                    <div class="card"><p>Weekly Sales: {{$weeklysales}}</p></div>
-                    <div class="card"><p>Daily Sales: {{$dailysales}}</p></div>
+                    <div class="card"><p>فروشات روزانه: {{$dailysales}}</p></div>
+                    <div class="card"><p>فروشات هفته وار: {{$weeklysales}}</p></div>
+                    <div class="card"><p>فروشات ماهوار: {{$monthlysales}}</p></div>
+                    <div class="card"><p>مجموعه فروشات: {{$totalsales}}</p></div>
                 </div>
                 <h4>Profit</h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>Total Profit: {{$totalsales - $totalExpenses - $totalstorage}}</p></div>
-                    <div class="card"><p>Monthly Profit: {{$monthlysales - $monthlyExpenses - $monthlystorage}}</p></div>
-                    <div class="card"><p>Weekly Profit: {{$weeklysales - $weeklyExpenses - $weeklystorage}}</p></div>
-                    <div class="card"><p>Daily Profit: {{$dailysales -$dailyExpenses - $dailystorage}}</p></div>
+                    <div class="card"><p>مفاد روزانه: {{$dailysales -$dailyExpenses - $dailystorage}}</p></div>
+                    <div class="card"><p>مفاد هفته وار: {{$weeklysales - $weeklyExpenses - $weeklystorage}}</p></div>
+                    <div class="card"><p>مفاد ماهوار: {{$monthlysales - $monthlyExpenses - $monthlystorage}}</p></div>
+                    <div class="card"><p>مجموعه مفاد: {{$totalsales - $totalExpenses - $totalstorage}}</p></div>
                 </div>
                 <h4>Expenses</h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>Total: {{$totalExpenses}}</p></div>
-                    <div class="card"><p>Monthly: {{$monthlyExpenses}}</p></div>
-                    <div class="card"><p>Weekly: {{$weeklyExpenses}}</p></div>
-                    <div class="card"><p>Daily: {{$dailyExpenses}} </p></div>
+                    <div class="card"><p>روزانه: {{$dailyExpenses}} </p></div>
+                    <div class="card"><p>هفته وار: {{$weeklyExpenses}}</p></div>
+                    <div class="card"><p> ماهوار: {{$monthlyExpenses}}</p></div>
+                    <div class="card"><p>مجموعه: {{$totalExpenses}}</p></div>
                 </div>
                 <h4>Storage </h4>
                 <div class="dashboard-cards">
-                    <div class="card"><p>Total: {{$totalstorage}}</p></div>
-                    <div class="card"><p>Monthly: {{$monthlystorage}}</p></div>
-                    <div class="card"><p>Weekly: {{$weeklystorage}}</p></div>
-                    <div class="card"><p>Daily: {{$dailystorage}}</p></div>
+                    <div class="card"><p>روزانه: {{$dailystorage}}</p></div>
+                    <div class="card"><p>هفته وار: {{$weeklystorage}}</p></div>
+                    <div class="card"><p> ماهوار: {{$monthlystorage}}</p></div>
+                    <div class="card"><p>مجموعه: {{$totalstorage}}</p></div>
                 </div>
             </main>
 
@@ -99,7 +99,7 @@
                                 <th>مجموع خارج شده</th>
                                 <th>مجموع منقضی شده</th>
                                 <th>باقی مانده</th>
-                                <th>تاریخ</th>
+                                {{-- <th>تاریخ</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -111,7 +111,7 @@
                                 <td>{{ $items->total_out }}</td>
                                 <td>{{ $items->total_expired }}</td>
                                 <td>{{ $items->total_in - $items->total_out - $items->total_expired}}</td>
-                                <td>{{ $items->created_at }}</td>
+                                {{-- <td>{{ $items->created_at }}</td> --}}
                             </tr>
                             @endforeach
                         </tbody>

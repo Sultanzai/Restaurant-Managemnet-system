@@ -16,7 +16,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('orderDetails.menu')->orderBy('id', 'desc')->get();
+        $orders = Order::with('orderDetails.menu')->orderBy('id')->get();
 
         $orderData = $orders->map(function ($order) {
             $totalMenuPrice = $order->orderDetails->sum(function ($orderDetail) {
@@ -172,7 +172,7 @@ class OrderController extends Controller
     public function Report()
     {
         
-        $orders = Order::with('orderDetails.menu')->orderBy('id', 'desc')->get();
+        $orders = Order::with('orderDetails.menu')->orderBy('id')->get();
 
         $orderData = $orders->map(function ($order) {
             $totalMenuPrice = $order->orderDetails->sum(function ($orderDetail) {

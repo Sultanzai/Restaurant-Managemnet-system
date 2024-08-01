@@ -106,11 +106,11 @@
             <div class="set">
                 <div class="form-group">
                     <label for="start_date">شروع تاریخ:</label>
-                    <input type="text" id="start_date" name="start_date">
+                    <input type="text" id="start_date" name="start_date" placeholder="Y/M/D">
                 </div>
                 <div class="form-group">
                     <label for="end_date">ختم تاریخ:</label>
-                    <input type="text" id="end_date" name="end_date">
+                    <input type="text" id="end_date" name="end_date" placeholder="Y/M/D">
                 </div>
             </div>
 
