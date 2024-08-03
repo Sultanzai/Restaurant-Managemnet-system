@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Log;
 use Auth;
 use Morilog\Jalali\Jalalian;
+use Carbon\Carbon;
+
 
 
 class OrderController extends Controller
@@ -211,12 +213,18 @@ class OrderController extends Controller
         $orderDetails = DB::table('order_receipt_view')
             ->where('order_id', $orderId)
             ->get();
-
+    
         if ($orderDetails->isEmpty()) {
             return redirect()->back()->with('error', 'Order not found.');
         }
-
+    
+        // Convert the created_at date to Hijri Shamsi for each order detail
+        foreach ($orderDetails as $orderDetail) {
+            $orderDetail->created_at = Jalalian::fromCarbon(Carbon::parse($orderDetail->created_at))->format('Y/m/d');
+        }
+    
         return view('PrintOrder', compact('orderDetails'));
     }
+    
 
 }
