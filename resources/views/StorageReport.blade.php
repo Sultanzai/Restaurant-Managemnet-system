@@ -188,7 +188,7 @@
                 const priceText = cells[4].innerText;
                 const unit = unitText ? parseFloat(unitText) : 0; // Handle null or empty values
                 const price = priceText ? parseFloat(priceText) : 0; // Handle null or empty values
-                const status = cells[5].innerText.toLowerCase();
+                const status = cells[6].innerText.toLowerCase();
                 const createdAt = new Date(cells[7].innerText);
 
                 let showRow = true;
