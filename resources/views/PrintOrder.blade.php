@@ -101,7 +101,7 @@
             <img src="{{ asset('css/logo.png') }}" alt="Logo">
         </div>
 
-        @if ($orderDetails->isNotEmpty())
+        @if ($orderDetails->isNotEmpty()) 
             @php
                 $order = $orderDetails->first();
             @endphp

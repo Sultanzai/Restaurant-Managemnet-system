@@ -63,11 +63,14 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
+            font-size: 20px;
+            font-weight: 600;
         }
         .form-group input, .form-group select {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
+            font-size: 20px;
         }
         .set{
             display: flex;

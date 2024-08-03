@@ -22,12 +22,14 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            font-size: 18px;
+            font-size: 22px;
+            font-weight: 600;
         }
         .form-group input {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
+            font-size: 20px;
         }
         .form-group button {
             padding: 10px 20px;
@@ -51,7 +53,7 @@
         }
         .bill-details .bill-detail input {
             flex: 1;
-            font-size: 18px;
+            font-size: 20px;
             height: 22px;
         }
         .bill-details .bill-detail button {
