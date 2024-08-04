@@ -56,7 +56,7 @@
         .btn-print {
             float: right;
         }
-        .btn{
+        .btn {
             float: right;
             margin: 10px;
         }
@@ -85,14 +85,14 @@
             box-sizing: border-box;
             font-size: 20px;
         }
-        .set{
+        .set {
             display: flex;
             align-items: space;
             width: 100%;
             text-align: right;
         }
         @media print {
-            .btn, .btn-back, .form-group {
+            .btn, .btn-back, .form-group, .print-waiter {
                 display: none;
             }
         }
@@ -126,7 +126,6 @@
                     <input type="text" id="end_date" name="end_date" placeholder="Y/M/D">
                 </div>
             </div>
-
             <button type="button" class="btn" onclick="filterExpenses()">Filter</button>
         </form>
         <table>
@@ -158,12 +157,12 @@
             </tbody>
         </table>
         <div>
-        <h3 style="float: left;">Total Amount: <span id="total-amount">{{ $totalAmount }}</span></h3>
-        </div>         
+            <h3 style="float: left;">Total Amount: <span id="total-amount">{{ $totalAmount }}</span></h3>
+        </div>
         <div>
-            {{-- Fix the  design error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --}}
-        <a href="javascript:window.print()" class="btn btn-print">Print</a>
-        <a href="{{ route('OrderPage') }}" class="btn btn-back">Back</a>
+            <a href="javascript:window.print()" class="btn btn-print">Print</a>
+            <a href="javascript:printForWaiters()" class="btn print-waiter">Print for Waiters</a>
+            <a href="{{ route('OrderPage') }}" class="btn btn-back">Back</a>
         </div>
     </div>
 
@@ -211,6 +210,97 @@
             }
 
             document.getElementById('total-amount').innerText = totalAmount.toFixed(2);
+        }
+
+        function printForWaiters() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const startDate = document.getElementById('start_date').value;
+            const endDate = document.getElementById('end_date').value;
+            const paymentType = document.getElementById('Paymment_type').value.toLowerCase();
+            const tableBody = document.getElementById('expense-table-body');
+            const rows = tableBody.getElementsByTagName('tr');
+            let totalAmount = 0;
+            let printContent = `
+                <div style="max-width: 300px; margin: auto;">
+                    <h1>Order for Waiters</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>نام</th>
+                                <th>منو</th>
+                                <th>قیمت</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                const name = cells[1].innerText.toLowerCase();
+                const type = cells[5].innerText.toLowerCase();
+                const amount = parseFloat(cells[4].innerText);
+                const createdAt = new Date(cells[7].innerText);
+
+                let showRow = true;
+
+                if (search && !name.includes(search)) {
+                    showRow = false;
+                }
+
+                if (startDate && createdAt < new Date(startDate)) {
+                    showRow = false;
+                }
+
+                if (endDate && createdAt > new Date(endDate)) {
+                    showRow = false;
+                }
+
+                if (paymentType && type !== paymentType) {
+                    showRow = false;
+                }
+
+                if (showRow) {
+                    printContent += `
+                        <tr>
+                            <td>${cells[1].innerText}</td>
+                            <td>${cells[2].innerText}</td>
+                            <td>${cells[4].innerText}</td>
+                        </tr>
+                    `;
+                    totalAmount += amount;
+                }
+            }
+
+            printContent += `
+                        </tbody>
+                    </table>
+                    <div>
+                        <h3>Total Amount: <span>${totalAmount.toFixed(2)}</span></h3>
+                    </div>
+                </div>
+            `;
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.open();
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html dir="rtl">
+                <head>
+                    <title>Print for Waiters</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; }
+                        table { width: 100%; border-collapse: collapse; }
+                        table, th, td { border: 1px solid #000; }
+                        th, td { padding: 10px; text-align: right; }
+                    </style>
+                </head>
+                <body>
+                    ${printContent}
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
         }
     </script>
 </body>
