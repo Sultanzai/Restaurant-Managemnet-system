@@ -227,7 +227,7 @@
                         <thead>
                             <tr>
                                 <th>نام</th>
-                                <th>منو</th>
+                                <th>توضیحات</th>
                                 <th>قیمت</th>
                             </tr>
                         </thead>
@@ -263,7 +263,7 @@
                     printContent += `
                         <tr>
                             <td>${cells[1].innerText}</td>
-                            <td>${cells[2].innerText}</td>
+                            <td>${cells[6].innerText}</td>
                             <td>${cells[4].innerText}</td>
                         </tr>
                     `;
@@ -291,7 +291,7 @@
                         body { font-family: Arial, sans-serif; }
                         table { width: 100%; border-collapse: collapse; }
                         table, th, td { border: 1px solid #000; }
-                        th, td { padding: 10px; text-align: right; }
+                        th, td { padding: 2px; text-align: right; }
                     </style>
                 </head>
                 <body>
