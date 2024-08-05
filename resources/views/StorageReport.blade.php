@@ -153,7 +153,7 @@
                     }
                 @endphp
                 <tr style="background-color: {{ $color }}">
-                    <td>{{ $items['storage_id'] }}</td>
+                    <td>{{ $items['id'] }}</td>
                     <td>{{ $items['s_Name'] }}</td>
                     <td>{{ $items['S_Type'] }}</td>
                     <td>{{ $items['S_Unit'] }}</td>

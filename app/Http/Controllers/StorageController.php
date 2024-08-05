@@ -113,7 +113,7 @@ class StorageController extends Controller
                 $hijriDate = Jalalian::fromCarbon(\Carbon\Carbon::parse($item->created_at))->format('Y/m/d');
     
                 return [
-                    'storage_id' => $item->storage_id,
+                    'id' => $item->id,
                     's_Name' => $item->s_Name,
                     'S_Type' => $item->S_Type,
                     'S_Unit' => $item->S_Unit,
