@@ -18,7 +18,7 @@
         .img {
             position: relative;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
         }
         .img img {
             max-width: 150px;
@@ -30,6 +30,9 @@
         }
         .header h1 {
             font-size: 24px;
+            margin: 0;
+            font-family: sans-serif;
+            font-weight: 100;
             margin: 0;
         }
         .order-info {
@@ -44,6 +47,14 @@
             word-wrap: break-word; /* Ensure long text breaks properly */
             overflow-wrap: break-word; /* Ensure long text breaks properly */
             border-bottom: 1px solid #000000;
+            margin-bottom: 0px;
+        }
+        .phone p{
+            margin-bottom: 5px;
+            width: 100%;
+        }
+        .address p {
+            margin-top: -15px;
         }
         .order-details {
             margin-bottom: 20px;
@@ -112,6 +123,9 @@
                 <p><strong>جزیات:</strong> {{ $order->O_Description }}</p>
                 <p><strong>تاریخ:</strong> {{ $order->created_at }}</p>
             </div>
+            <div class="phone">
+                <p>شماره تماس: 0782469145 - 0777146291</p>
+            </div>
 
             <table class="order-details">
                 <thead>
@@ -146,9 +160,14 @@
                     </tr>
                 </tfoot>
             </table>
+            <div class="address">
+                <p>
+                    آدرس: چوک درمسال سلطانزی مارکیت بلاک  (B) 
+                </p>
+            </div>
 
             <div class="footer">
-                <p>از سفارش شما متشکریم</p>
+                <p>از غذای خود لذت ببرید</p>
             </div>
         @else
             <p>No order details found.</p>
