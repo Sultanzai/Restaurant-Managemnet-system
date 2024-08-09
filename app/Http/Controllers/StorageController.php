@@ -35,22 +35,31 @@ class StorageController extends Controller
             'price' => 'nullable|numeric',
             'type' => 'nullable|max:255',
             'status' => 'string|max:255',
+        ]);
+
+        $statuses = [$request->status];
+
+        if ($request->status == 'In & Out') {
+            $statuses = ['In', 'Out'];
+        }
+
+        foreach ($statuses as $status) {
+            $storagedetail = StorageDetail::create([
+                'S_Unit' => $request->unit,
+                'S_Type' => $request->type,
+                'S_Price' => $request->price,
+                'S_Status' => $status,
+                'Storage_ID' => $request->storage_id
             ]);
 
-        $storagedetail = StorageDetail::create([
-            'S_Unit' => $request->unit,
-            'S_Type' => $request->type,
-            'S_Price' => $request->price,
-            'S_Status' => $request->status,
-            'Storage_ID' => $request->storage_id
-        ]);
-        
-        if (!$storagedetail) {
-            throw new \Exception('Item detail creation failed');
+            if (!$storagedetail) {
+                throw new \Exception('Item detail creation failed');
+            }
         }
-        return redirect('/StoragePage')->with('success','');
-    }
 
+        return redirect('/StoragePage')->with('success', 'Items added successfully');
+    }
+    
     public function store(Request $request)
     {
         $request->validate([

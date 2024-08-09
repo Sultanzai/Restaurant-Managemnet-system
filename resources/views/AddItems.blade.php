@@ -109,6 +109,7 @@
                     <option value="In">In</option>
                     <option value="Out">Out</option>    
                     <option value="Expired">Expired</option>    
+                    <option value="In & Out">In & Out</option>    
                 </Select>
             </div>
             <div class="form-group" id="price-group">
@@ -124,17 +125,18 @@
 
 
     <script>
-        document.getElementById('status').addEventListener('change', function() {
-            const priceGroup = document.getElementById('price-group');
-            if (this.value === 'In') {
-                priceGroup.classList.remove('hidden');
-            } else {
-                priceGroup.classList.add('hidden');
-            }
-        });
+        // Hidding price input
+        // document.getElementById('status').addEventListener('change', function() {
+        //     const priceGroup = document.getElementById('price-group');
+        //     if (this.value === 'In') {
+        //         priceGroup.classList.remove('hidden');
+        //     } else {
+        //         priceGroup.classList.add('hidden');
+        //     }
+        // });
 
         // Initial check on page load
-        document.getElementById('status').dispatchEvent(new Event('change'));
+        // document.getElementById('status').dispatchEvent(new Event('change'));
     </script>
 
 </body>
